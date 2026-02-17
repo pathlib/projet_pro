@@ -42,7 +42,6 @@ def question():
             raise KeyboardInterrupt
         print(question)
         liste.append({"question": question, "reponse": "None", "type": "normale", "commentaire": "None", "date": afficher_heure()})
-        delterm()
     except KeyboardInterrupt:
         pass
 
@@ -54,9 +53,11 @@ def suppresion():
     print(liste[h]['question'])
     try:
         del liste[h]
-        delterm()
+        print("Question supprimée.")
+        input("Appuyez sur Entrée pour continuer...")
     except IndexError as e:
         print(f"Il n'y a aucune donnée à supprimer {e}")
+        input("Appuyez sur Entrée pour continuer...")
 
 
 # Fonction pour ajouter une réponse à une question
@@ -67,9 +68,10 @@ def reponse():
         yu = input("Réponse : ")
         liste[h]["reponse"] = yu
         print(f"La question est : {liste[h]['question']}, réponse : {liste[h]['reponse']}")
-        delterm()
+        input("Appuyez sur Entrée pour continuer...")
     except IndexError as e:
         print(f"Aucune réponse à afficher {e}")
+        input("Appuyez sur Entrée pour continuer...")
 
 
 # Fonction pour saisir une valeur booléenne
@@ -81,11 +83,13 @@ def repbool():
         if valeur == "True" or valeur == "False":
             liste[h]["type"] = valeur
             print(liste)
-            delterm()
+            input("Appuyez sur Entrée pour continuer...")
         else:
             print("Erreur")
+            input("Appuyez sur Entrée pour continuer...")
     except IndexError as e:
         print(f"Aucune valeur booléenne à afficher {e}")
+        input("Appuyez sur Entrée pour continuer...")
 
 
 # Fonction pour afficher toutes les questions/réponses
@@ -94,14 +98,13 @@ def rep():
     print("_______________")
     if not liste:
         print("Aucune donnée")
-        return
+        input("Appuyez sur Entrée pour continuer...")
     else:
         print(f"{'Question':<20} {'Réponse':<10} {'Type':<10} {'Commentaire':<20} {'Date':<10}")
         for ligne in liste:
             print(f"{ligne['question']:<20} {ligne['reponse']:<10} {ligne['type']:<10} {ligne['commentaire']:<20} {ligne['date']:<10}")
-            y = input("Finish ? ")
-            if y == "finish":
-                delterm()
+        
+        input("Appuyez sur Entrée pour continuer...")
 
 
 # Fonction pour ajouter un commentaire à une question
@@ -166,7 +169,7 @@ def sauvegarder_json(liste):
             json.dump(liste, f, indent=4, ensure_ascii=False)
 
         print("JSON créé ici :", fichier)
-        delterm()
+        input("Appuyez sur Entrée pour continuer...")
     except PermissionError:
         print("Permission refusée")
     except OSError as e:
@@ -237,7 +240,7 @@ def sauvegarder_csv(liste):
                     writer.writerow(ligne)
 
         print("CSV créé ici :", fichier)
-        delterm()  # Si tu as une fonction pour nettoyer ou terminer, garde-la ici
+        input("Appuyez sur Entrée pour continuer...")
     except PermissionError:
         print("Permission refusée")
     except OSError as e:
@@ -250,8 +253,8 @@ def sauvegarder_csv(liste):
 # Menu principal
 while True:
     delterm()
-    print("======== Menu Principal ========")
-    a=input("1 enregistre votre question/2 afficher le reacap/3 enregistre votre progression: ")
+    print("======== Menu Principal ========\n")
+    a=input("1 enregistre votre question\n/2 afficher le reacap\n/3 enregistre votre progression: ")
     if a == "1":
         question()
         z=input("fin/supr/bool/libre : ")
@@ -271,11 +274,12 @@ while True:
     
     
     elif a =="3":
-        print("choisiser votre mode de sauvegarde txt,json,pdf word ")
-        sauvegarde=input(".txt,json,charger_json,CSV,pdf,word")
+        print("Choisissez votre mode de sauvegarde : 1.txt, 2.json, 3.charger_json, 4.CSV, 5.DB")
+        sauvegarde=input("Votre choix (1-5) : ")
         if sauvegarde == "1" :
             print("fichier sauvegarder en .txt")
             txt()
+            input("Appuyez sur Entrée pour continuer...")
         elif sauvegarde == "2":
             print("fichier sauvegarder en .json")
             sauvegarder_json(liste)
@@ -286,9 +290,12 @@ while True:
         elif sauvegarde == "5":
             create_db()
             ajouter_utilisateurs(liste)
-            tt=input("affiche")
+            print("Données sauvegardées en base de données.")
+            tt=input("Tapez 'affiche' pour voir, 'suppr' pour supprimer l'ID 1, ou Entrée pour quitter : ")
             if tt == "affiche":
                 afficher_utilisateurs()
+                input("Appuyez sur Entrée pour continuer...")
             if tt == "suppr":
                 supprimer_utilisateur(1)
                 afficher_utilisateurs()
+                input("Appuyez sur Entrée pour continuer...")
