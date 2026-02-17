@@ -1,10 +1,12 @@
 import sqlite3
 
 
+DB_PATH = 'ma_base.db'
 
+# Fonction pour créer la base de données'
 
 def create_db():
-    conn = sqlite3.connect('ma_base.db')  # Utilisation d'une seule base de données
+    conn = sqlite3.connect(DB_PATH)  # Utilisation d'une seule base de données
     c = conn.cursor()
 
     # Création de la table si elle n'existe pas déjà
@@ -26,7 +28,7 @@ def create_db():
 
 # Fonction pour ajouter plusieurs entrées à la base de données à partir d'une liste de dictionnaires
 def ajouter_utilisateurs(liste):
-    conn = sqlite3.connect('ma_base.db')  # Utilisation de la même base de données
+    conn = sqlite3.connect(DB_PATH)  # Utilisation de la même base de données
     c = conn.cursor()
 
     # Insertion de chaque entrée dans la base de données
@@ -43,7 +45,7 @@ def ajouter_utilisateurs(liste):
 
 # Fonction pour afficher tous les utilisateurs (questions dans la base de données)
 def afficher_utilisateurs():
-    conn = sqlite3.connect('ma_base.db')  # Connexion à la bonne base de données
+    conn = sqlite3.connect(DB_PATH)  # Connexion à la bonne base de données
     c = conn.cursor()
 
     # Sélectionner toutes les questions
@@ -59,7 +61,7 @@ def afficher_utilisateurs():
 
 # Fonction pour supprimer une question de la base de données par ID
 def supprimer_utilisateur(id_utilisateur):
-    conn = sqlite3.connect('ma_base.db')  # Connexion à la bonne base de données
+    conn = sqlite3.connect(DB_PATH)  # Connexion à la bonne base de données
     c = conn.cursor()
 
     # Suppression de la question par ID
