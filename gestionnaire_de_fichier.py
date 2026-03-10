@@ -1,18 +1,29 @@
 from pathlib import Path
-
-dossiers = [
-    ("Bureau", "📁"),
-    ("Téléchargement", "⬇️"),
-    ("Documents", "📄"),
-    ("Images", "🖼️"),
-    ("Musique", "🎵"),
-    ("Vidéos", "🎬"),
-    ("Projets", "📂"),
-]
+import os
 
 
-for nom, icone in dossiers:
-    print(f"[{icone}] {nom}")
+def clear_console():
+    if os.name == "nt":  
+        os.system("cls")# Windows
+    else:  
+        os.system("clear")# macOS / Linux
+
+
+def m():
+    dossiers = [
+        ("Bureau", "📁"),
+        ("Téléchargement", "⬇️"),
+        ("Documents", "📄"),
+        ("Images", "🖼️"),
+        ("Musique", "🎵"),
+        ("Vidéos", "🎬"),
+        ("Projets", "📂"),
+    ]
+
+
+    for nom, icone in dossiers:
+        print(f"[{icone}] {nom}")
+
 
 def affiche():
     a=input("Desktop")
@@ -27,12 +38,16 @@ def affiche():
 
 def ouvrir():
     chemin=Path.home()/"Desktop"/"n.txt"
-    with open(chemin,"r") as fichiers:
-        print(fichiers.read())
+    os.startfile(chemin)
+
 
 def supprimer():
-    chemin=Path.home()/"Desktop"/"n.txt"
-    Path(chemin).unlink()
+    b=input("vouler vous vraiment supprimer ?")
+    if b == "oui":
+        chemin=Path.home()/"Desktop"/"n.txt"
+        Path(chemin).unlink()
+    else :
+        return
 
 def creer():
     chemin=Path.home()/"Desktop"/"n.txt"
@@ -41,3 +56,25 @@ def creer():
 
 def renomer():
     chemin=Path.home()/"Desktop"/"n.txt"
+
+def copier():
+    chemin=Path.home()/"Desktop"/"n.txt"
+
+while True:
+    clear_console()
+    print("bienvenue")
+    m()
+    a=input("affiche ouvrir supprimer creer")
+    if a == "affiche":
+        affiche()
+
+    elif a == "ouvrir":
+        ouvrir()
+
+    elif a == "supprimer":
+        supprimer()
+    elif a == "creer":
+        creer()
+    elif a == "renomer":
+        renomer()
+
