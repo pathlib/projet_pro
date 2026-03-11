@@ -24,48 +24,89 @@ def m():
     for nom, icone in dossiers:
         print(f"[{icone}] {nom}")
 
+
 def affiche():
-    a = input("Desktop")
-    b = input("fichier ")
-    donnee = Path.home() / a / b
+    a = input("Nom du dossier (ex: Desktop): ")
+    donnee = Path.home() / a
     if donnee.exists():
         if donnee.is_dir():
+            for r in donnee.iterdir():
+                print(r)
+            b=input("Nom du dossier (ex: Desktop): ")
+            donnee = Path.home() / a / b
+
             return donnee
+
         elif donnee.is_file():
+            print("C'est un fichier :", donnee)
             return donnee
+    else:
+        print("Le chemin n'existe pas")
 
 
 def ouvrir(b):
-    chemin=Path.home()/b
-    os.startfile(chemin)
-#a metre pour linux et mac
+    try:
+        chemin=Path.home()/ b
+        os.startfile(chemin)
+        #a metre pour linux et mac
+    except FileNotFoundError:
+        print("ficier non trouver")
+
 
 def supprimer(b):
     c=input("vouler vous vraiment supprimer ?")
     if c == "oui":
         chemin=Path.home()/b
         if chemin.is_file():
-            Path(chemin).unlink()
+            try:
+                Path(chemin).unlink()
+            except FileNotFoundError:
+                print("fichier non trouver")
+
         else :
+
             shutil.rmtree(Path(chemin))
 
-def creer():
-    a=input("fichier ou dossier")
-    chemin = Path.home() / "Desktop" / "nh.txt"
-    if a == "fichier":
+
+def creer(b):
+    chemin = Path.home()/ b
+    if b.is_file():
         chemin.touch()
     else:
         chemin.mkdir()
 
-def renomer():
-    chemin=Path.home()/"Desktop"/"nh.txt"
-    nchemin=Path.home()/"Desktop"/"nkl.txt"
-    Path(chemin).rename(nchemin)
 
-def copier():
-    chemin=Path.home()/"Desktop"/"n.txt"
-    nchemin=Path.home()/"Documents"/"n.txt"
-    shutil.copy2(Path(chemin), Path(nchemin))
+def renomer(b):
+    chemin=Path.home()/b
+    nouveaux_nom=input("nouveaux nom ")
+    try:
+        nchemin=Path.home()/"Desktop"/nouveaux_nom
+        Path(chemin).rename(nchemin)
+    except FileNotFoundError:
+        print("fichier non trouver")
+
+
+def copier(b):
+    chemin=Path.home()/ b
+    try:
+        nouveaux_chemin=input("nouveaux chemin ")
+        nchemin=Path.home()/nouveaux_chemin/"n.txt"
+        shutil.copy2(Path(chemin), Path(nchemin))
+    except FileNotFoundError:
+        print("ficier non trouver")
+
+
+def deplacer(b):
+    chemin = Path.home() / b
+    nchemin = Path.home() / "Desktop" / "nkl.txt"
+    try:
+        shutil.move(chemin, nchemin)
+    except FileNotFoundError:
+        print("fichier non trouver")
+
+
+def corbeille(b):
+    chemin=Path.home()/ b
 
 
 while True:
@@ -73,7 +114,7 @@ while True:
     print("bienvenue")
     m()
     b=affiche()
-    a=input("affiche ouvrir supprimer creer renomer copier")
+    a=input("affiche ouvrir supprimer creer renomer copier deplacer")
     if a == "affiche":
         affiche()
     elif a == "ouvrir":
@@ -81,8 +122,10 @@ while True:
     elif a == "supprimer":
         supprimer(b)
     elif a == "creer":
-        creer()
+        creer(b)
     elif a == "renomer":
-        renomer()
+        renomer(b)
     elif a == "copier":
-        copier()
+        copier(b)
+    elif a == "deplacer":
+        deplacer(b)
