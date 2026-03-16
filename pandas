@@ -4,5 +4,6 @@ data={"nom":["jone","marc","eliot"],"age":[30,35,20]}
 
 e=pd.DataFrame(data)
 print(e.info)
-print(e.shape())
-print(e.tail())
+print(e.shape(1))
+print(e.tail(2))
+print(e.column)
