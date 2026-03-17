@@ -1,6 +1,6 @@
 import pandas as pd
 
-data={"nom":["jone","marc","eliot"],"age":[30,35,20]}
+data={"nom":["jone","marc","eliot"],"age":[30,35,20],"travaille":["informatique","maçon","ingénieur"]}
 
 e=pd.DataFrame(data)
 print(e.info)
