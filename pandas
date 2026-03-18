@@ -1,9 +1,19 @@
 import pandas as pd
 
-data={"nom":["jone","marc","eliot"],"age":[30,35,20],"travaille":["informatique","maçon","ingénieur"]}
+data = {
+    "nom": ["jone", "marc", "eliot"],
+    "age": [30, 35, 20],
+    "travaille": ["informatique", "maçon", "ingénieur"]
+}
 
-e=pd.DataFrame(data)
-print(e.info)
-print(e.shape(1))
+e = pd.DataFrame(data)
+
+print(e.info())        # ✅ correction
 print(e.tail(2))
-print(e.column)
+print(e.columns)
+
+e["date"] = pd.to_datetime(["2020", "2021", "2022"])
+
+e.set_index("date", inplace=True)   # ✅ correction
+
+print(e)
