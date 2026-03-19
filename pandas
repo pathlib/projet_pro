@@ -8,12 +8,12 @@ data = {
 
 e = pd.DataFrame(data)
 
-print(e.info())        # ✅ correction
+print(e.info())        
 print(e.tail(2))
 print(e.columns)
 
 e["date"] = pd.to_datetime(["2020", "2021", "2022"])
 
-e.set_index("date", inplace=True)   # ✅ correction
-
+e.set_index("date", inplace=True)  
 print(e)
+e.to_excel()
