@@ -1,0 +1,2 @@
+def atest():
+    print("test")
