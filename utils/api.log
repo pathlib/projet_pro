@@ -1,0 +1,55 @@
+2026-06-29 10:29:53,196 - INFO - Gui afficher
+2026-06-29 10:31:13,557 - INFO - Donnée enregistrée
+2026-06-29 11:09:31,092 - INFO - Gui afficher
+2026-06-29 11:10:09,617 - INFO - Donnée enregistrée
+2026-06-30 12:33:44,451 - INFO - Gui afficher
+2026-06-30 12:46:01,665 - ERROR - Failed to configure throttling for api.api.home (no granularity matched for seconde)
+2026-06-30 12:48:14,554 - ERROR - Failed to configure throttling for api.api.home (no granularity matched for seconde)
+2026-06-30 12:49:23,821 - ERROR - Failed to configure throttling for api.api.home (no granularity matched for seconde)
+2026-06-30 12:49:31,067 - INFO - Gui afficher
+2026-06-30 12:49:34,494 - INFO - Gui afficher
+2026-06-30 12:49:34,684 - INFO - Gui afficher
+2026-06-30 12:49:34,862 - INFO - Gui afficher
+2026-06-30 12:49:35,048 - INFO - Gui afficher
+2026-06-30 12:49:35,228 - INFO - Gui afficher
+2026-06-30 12:49:35,394 - INFO - Gui afficher
+2026-06-30 12:49:35,586 - INFO - Gui afficher
+2026-06-30 12:49:35,745 - INFO - Gui afficher
+2026-06-30 12:49:35,927 - INFO - Gui afficher
+2026-06-30 12:49:36,066 - INFO - Gui afficher
+2026-06-30 12:49:36,882 - INFO - Gui afficher
+2026-06-30 12:49:37,133 - INFO - Gui afficher
+2026-06-30 12:50:36,934 - INFO - Gui afficher
+2026-06-30 12:50:39,072 - INFO - Gui afficher
+2026-06-30 12:50:39,255 - INFO - Gui afficher
+2026-06-30 12:50:39,438 - INFO - Gui afficher
+2026-06-30 12:50:39,638 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /
+2026-06-30 12:50:39,831 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /
+2026-06-30 12:50:45,272 - INFO - Gui afficher
+2026-06-30 12:50:46,086 - INFO - Gui afficher
+2026-06-30 12:50:46,266 - INFO - Gui afficher
+2026-06-30 12:50:46,450 - INFO - Gui afficher
+2026-06-30 12:50:46,592 - INFO - Gui afficher
+2026-06-30 12:50:46,772 - INFO - Gui afficher
+2026-06-30 12:50:47,105 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /
+2026-06-30 12:50:47,256 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /
+2026-06-30 12:55:06,806 - INFO - Donnée enregistrée
+2026-06-30 12:55:15,276 - INFO - Donnée enregistrée
+2026-06-30 12:55:18,112 - INFO - Donnée enregistrée
+2026-06-30 12:55:44,870 - INFO - Donnée enregistrée
+2026-06-30 12:55:46,927 - INFO - Donnée enregistrée
+2026-06-30 12:56:01,307 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /ping
+2026-06-30 12:56:01,474 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /ping
+2026-06-30 12:56:03,782 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /ping
+2026-06-30 12:56:08,791 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /ping
+2026-06-30 12:56:09,082 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /ping
+2026-06-30 13:00:06,495 - INFO - Gui afficher
+2026-06-30 13:00:08,582 - INFO - Gui afficher
+2026-06-30 13:00:08,738 - INFO - Gui afficher
+2026-06-30 13:00:08,896 - INFO - Gui afficher
+2026-06-30 13:00:09,128 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /
+2026-06-30 13:00:09,362 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /
+2026-06-30 13:00:09,560 - WARNING - ratelimit 3 per 1 second (127.0.0.1) exceeded at endpoint: /
+2026-06-30 13:08:56,992 - INFO - Gui afficher
+2026-07-03 09:24:01,618 - INFO - Gui afficher
+2026-07-03 09:24:57,134 - INFO - Donnée enregistrée

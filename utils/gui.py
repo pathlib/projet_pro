@@ -1,4 +1,4 @@
-def guis():
+def guis()-> str:
     return """
     <!DOCTYPE html>
 <html lang="fr">
@@ -84,7 +84,8 @@ def guis():
       <h2>Exemple de route API</h2>
 
       <p>GET utilisateurs :</p>
-      <code>GET /donnee/{id} </code>
+      <code>GET /donnees </code>
+      <h3>affiche toute les donnee</h3>
 
       <br><br>
 

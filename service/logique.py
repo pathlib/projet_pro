@@ -1,10 +1,10 @@
 from securite import securites
 from pydantic import BaseModel
 from fastapi import Query, HTTPException
-from autre.loggers import logger
-from autre.gui import guis
+from utils.loggers import logger
+from utils.gui import guis
 from base_de_donnees.base_de_donnee import selection, deletion, creation, modification
-
+from typing import Any, Dict,List
 
 class Donnee(BaseModel):
     donnee: str
@@ -12,7 +12,7 @@ class Donnee(BaseModel):
 
 
 # Affichage de la page d'accueil
-def home():
+def home()-> Any:
     try:
         logger.info("Gui afficher")
         securites.atest()
@@ -23,7 +23,7 @@ def home():
 
 
 # Recherche sécurisée
-def recherche_donnee(item: int):
+def recherche_donnee(item: Any)->Dict[str, Any]:
     try:
         data = selection()
     except Exception as e:
@@ -36,15 +36,17 @@ def recherche_donnee(item: int):
         try:
             if int(d["id"]) == item:
                 return {"data": d}
+            if str(d["data"]) == item:
+                return {"data": d}
+
         except (ValueError, KeyError) as e:
             logger.warning(f"Donnée corrompue détectée en BDD : {e}")
             continue
-
     raise HTTPException(status_code=404, detail="Valeur introuvable")
 
 
 # Obtenir les données avec une limite maximale stricte
-def get_donnee(limit: int = Query(10, ge=1, le=100), offset: int = Query(0, ge=0)):
+def get_donnee(limit: int = Query(10, ge=1, le=100), offset: int = Query(0, ge=0))->Dict[str, Any]:
     try:
         data = selection()
         return {"data": data[offset : offset + limit]}
@@ -56,7 +58,7 @@ def get_donnee(limit: int = Query(10, ge=1, le=100), offset: int = Query(0, ge=0
 
 
 # Permet de créer les données de façon sécurisée
-def create_donnee(item: str):
+def create_donnee(item: str)->List[str]:
     if not item or not item.strip():
         raise HTTPException(status_code=400, detail="Valeur vide interdite")
 
@@ -65,10 +67,9 @@ def create_donnee(item: str):
         for d in data:
             if d["donnee"] == item:
                 raise HTTPException(status_code=400, detail="La donnée existe déjà")
-
         creation(item)
         logger.info("Donnée enregistrée")
-        return {"message": f"La donnée a été sauvegardée"}
+        return {"message": "La donnée a été sauvegardée"}
 
     except HTTPException:
         raise  # On laisse passer nos propres erreurs HTTP
@@ -79,8 +80,9 @@ def create_donnee(item: str):
         )
 
 
+
 # Permet la mise à jour sécurisée des données
-def update_donnee(item_id: int, donnee_text: str):
+def update_donnee(item_id: int, donnee_text: str)->Dict[str,str]:
     if not donnee_text or not donnee_text.strip():
         raise HTTPException(status_code=400, detail="Valeur vide interdite")
 
@@ -102,7 +104,7 @@ def update_donnee(item_id: int, donnee_text: str):
 
 
 # Supprime proprement et gère l'absence de l'élément
-def delete_donnee(item: int):
+def delete_donnee(item: int)->Dict[str,Any]:
     try:
         data = selection()
         for d in data:
@@ -118,3 +120,5 @@ def delete_donnee(item: int):
     except Exception as e:
         logger.error(f"Erreur critique lors de la suppression de {item} : {e}")
         raise HTTPException(status_code=500, detail="Erreur lors de la suppression")
+def ping():
+    return {"message": "Ping reussie"}
