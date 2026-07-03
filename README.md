@@ -73,5 +73,7 @@ Tests unitaires et vérification du bon fonctionnement des modules.
 
 ## Installation
 
-Cloner le dépôt :
+Cloner le dépôt : git clone https://github.com/pathlib/projet_pro.git
+dans python pip install -r requirements.txt
+lancer uvicorn uvicorn api.api:app --reload
 
