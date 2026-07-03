@@ -1,19 +1,21 @@
-?? Le projet est actuellement en cours de d�veloppement. Certaines fonctionnalit�s ne sont pas encore disponibles ou pas encore corrig�es. ??
+Le projet est actuellement en cours de développement. Certaines fonctionnalitès ne sont pas encore disponibles ou pas encore corrigèes.
+# API Python CRUD
 
-# API PYTHON CRUD
-Projet Python de d�veloppement d'une API CRUD
+Projet Python de développement d’une API CRUD.
+
 ## Description
 
-Les diff�rentes fonctionnalit�s sont?:
+Les différentes fonctionnalités sont :
 
-API et gestion des requ�tes
-Services m�tier
-Gestion des donn�es
-S�curit� et contr�le d'acc�s
-Journalisation des �v�nements
-Tests qualit�
+- API et gestion des requêtes  
+- Services métier  
+- Gestion des données  
+- Sécurité et contrôle d’accès  
+- Journalisation des événements  
+- Tests de qualité  
 
 # Structure du projet
+
 api/
 base_de_donnees/
 securite/
@@ -23,30 +25,31 @@ quality_tests/
 .gitignore
 README.md
 
+---
 
 ### api/
 
-Contient les endpoints, la logique de communication et le traitement des requ�tes.
+Contient les endpoints, la logique de communication et le traitement des requêtes.
 
 ### base_de_donnees/
 
-Gestion de la base de donn�es, requ�tes et stockage des informations.
+Gestion de la base de données, requêtes et stockage des informations.
 
 ### securite/
 
-Fonctions li�es � la s�curit� :
+Fonctions liées à la sécurité :
 
 - validation
-- contr�le d'acc�s
-- protection des donn�es
+- contrôle d’accès
+- protection des données
 
 ### service/
 
-Logique m�tier principale de l'application.
+Logique métier principale de l’application.
 
 ### utils/
 
-Outils compl�mentaires :
+Outils complémentaires :
 
 - logger
 - interface graphique
@@ -54,39 +57,21 @@ Outils compl�mentaires :
 
 ### quality_tests/
 
-Tests unitaires et v�rification du bon fonctionnement des modules.
+Tests unitaires et vérification du bon fonctionnement des modules.
 
 ---
-## Technologies utilis�es
+
+## Technologies utilisées
 
 - Python 3.13
 - Pytest
 - Logging
 - Git
 - GitHub
-- black
-- ruff
+- Black
+- Ruff
 
-  ## Installation
+## Installation
 
-Cloner le d�p�t :
-git clone https://github.com/pathlib/projet_pro.git
+Cloner le dépôt :
 
-Acc�der dans le dossier :
-cd pathlib
-
-Installer les d�pendances :
-pip install -r requirements.txt
-
-## Lancement
-Ex�cuter l'application :
-python main.py
-
-## Tests
-
-Lancer les tests :
-pytest
-
-## Projet
-
-D�velopp� dans le cadre d'un apprentissage avanc� de Python, du d�veloppement logiciel et des bonnes pratiques de programmation.
