@@ -2,25 +2,32 @@ from securite import securites
 from pydantic import BaseModel
 from fastapi import Query, HTTPException
 from utils.loggers import logger
-from utils.gui import guis
+from utils.gui import guis,gui2
 from base_de_donnees.base_de_donnee import selection, deletion, creation, modification
 from typing import Any, Dict,List
+from dotenv import*
+import os
 
 class Donnee(BaseModel):
     donnee: str
     id: int
-
+#_________________________________
+# en cour d implementation
+load_dotenv()
+db_password = os.getenv("DB_PASSWORD")
+#__________________________________
 
 # Affichage de la page d'accueil
 def home()-> Any:
     try:
-        logger.info("Gui afficher")
+        logger.info("API allumer")
         securites.atest()
         return guis()
     except Exception as e:
         logger.error(f"Erreur lors de l'affichage GUI : {e}")
         raise HTTPException(status_code=500, detail="Erreur interne du serveur")
-
+def home2():
+    return gui2()
 
 # Recherche sécurisée
 def recherche_donnee(item: Any)->Dict[str, Any]:
@@ -120,5 +127,15 @@ def delete_donnee(item: int)->Dict[str,Any]:
     except Exception as e:
         logger.error(f"Erreur critique lors de la suppression de {item} : {e}")
         raise HTTPException(status_code=500, detail="Erreur lors de la suppression")
+
+
 def ping():
     return {"message": "Ping reussie"}
+
+def ready():
+    try:
+        data = selection()
+        if data is not None:
+            return True
+    except:
+        return False

@@ -1,14 +1,24 @@
 from typing import Any
-
+import time
 from fastapi import FastAPI, Body, Query
 from fastapi.responses import HTMLResponse
 from service import logique
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
-from fastapi import Request
-
+from fastapi import Request,APIRouter
+from prometheus_fastapi_instrumentator import Instrumentator
 app = FastAPI()
+Instrumentator().instrument(app).expose(app)
+@app.middleware("http")
+def times(request,call_next):
+    start = time.time()
+    response = call_next(request)
+    end = time.time()
+    print(f"Temps : {end - start:.3f}s")
+    return response
+
+
 limiter = Limiter(key_func=get_remote_address)
 app.state.limiter = limiter
 
@@ -17,12 +27,22 @@ app.add_exception_handler(
     RateLimitExceeded,
     _rate_limit_exceeded_handler
 )
+router=APIRouter(prefix="/v2")
+
+
+
 
 # affiche la page d acceuil et la gui
 @app.get("/", response_class=HTMLResponse)
 @limiter.limit("3/second")
 def home(request: Request):
     return logique.home()
+
+# affiche la page d acceuil et la gui
+@router.get("/", response_class=HTMLResponse)
+@limiter.limit("3/second")
+def home2(request: Request):
+    return logique.home2()
 
 
 # recherche les donnees par id
@@ -64,3 +84,10 @@ def delete_donnee(request: Request,id: int):
 @limiter.limit("3/second")
 def ping(request: Request):
     return logique.ping()
+
+@app.get("/ready")
+@limiter.limit("3/second")
+def db(request: Request):
+    return logique.ready()
+
+app.include_router(router)
