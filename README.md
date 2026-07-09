@@ -55,7 +55,7 @@ Outils complémentaires :
 - interface graphique
 - utilitaires divers
 
-### quality_tests/
+### tests/
 
 Tests unitaires et vérification du bon fonctionnement des modules.
 
@@ -70,10 +70,70 @@ Tests unitaires et vérification du bon fonctionnement des modules.
 - GitHub
 - Black
 - Ruff
+- Prometheus
+- slowapi
+- alembic
+- docker
 
 ## Installation
 
-Cloner le dépôt : git clone https://github.com/pathlib/projet_pro.git
-dans python pip install -r requirements.txt
-lancer uvicorn uvicorn api.api:app --reload
+# Installation et lancement du projet
+
+## 1. Cloner le dépôt GitHub
+
+```bash
+git clone https://github.com/pathlib/projet_pro.git
+```
+
+## 2. Accéder au dossier du projet
+
+```bash
+cd projet_pro
+```
+
+## 3. Créer un environnement virtuel Python
+
+```bash
+python -m venv venv
+```
+
+## 4. Activer l’environnement virtuel
+
+**Windows :**
+
+```bash
+venv\Scripts\activate
+```
+
+**Linux / macOS :**
+
+```bash
+source venv/bin/activate
+```
+
+## 5. Installer les dépendances
+
+```bash
+pip install -r requirements.txt
+```
+
+## 6. Lancer l’API
+
+Démarrer le serveur avec Uvicorn :
+
+```bash
+uvicorn api.api:app --reload
+```
+
+## Accès à l’API
+
+Une fois le serveur lancé, l’API est disponible à l’adresse :
+
+http://127.0.0.1:8000
+
+La documentation interactive FastAPI est accessible ici :
+
+http://127.0.0.1:8000/docs
+
+
 
