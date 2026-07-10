@@ -8,7 +8,11 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from fastapi import Request,APIRouter
 from prometheus_fastapi_instrumentator import Instrumentator
+
+
 app = FastAPI()
+
+
 Instrumentator().instrument(app).expose(app)
 @app.middleware("http")
 def times(request,call_next):
@@ -28,7 +32,6 @@ app.add_exception_handler(
     _rate_limit_exceeded_handler
 )
 router=APIRouter(prefix="/v2")
-
 
 
 
