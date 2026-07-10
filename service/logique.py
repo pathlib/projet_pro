@@ -29,7 +29,7 @@ def home()-> Any:
         return guis()
     except Exception as e:
         logger.error(f"Erreur lors de l'affichage GUI : {e}")
-        raise HTTPException(status_code=404, detail={"success": False,"code": "USER_NOT_FOUND","message": "erreur interne du serveur","data": {"user_id": 10}})
+        raise HTTPException(status_code=500, detail={"success": False,"code": "USER_NOT_FOUND","message": "erreur interne du serveur","data": {"user_id": 10}})
 def home2():
     return gui2()
 
@@ -39,7 +39,7 @@ def recherche_donnee(item: Any)->Dict[str, Any]:
         data = selection()
     except Exception as e:
         logger.error(f"Erreur BDD (selection) : {e}")
-        raise HTTPException(status_code=404, detail={"success": False,"code": "USER_NOT_FOUND","message": "erreur interne de la base","data": {"user_id": 10}})
+        raise HTTPException(status_code=500, detail={"success": False,"code": "USER_NOT_FOUND","message": "erreur interne de la base","data": {"user_id": 10}})
 
     for d in data:
         try:
@@ -67,13 +67,13 @@ def get_donnee(limit: int = Query(10, ge=1, le=100), offset: int = Query(0, ge=0
 # Permet de créer les données de façon sécurisée
 def create_donnee(item: str)->List[str]:
     if not item or not item.strip():
-        raise HTTPException(status_code=404, detail={"success": False,"code": "USER_NOT_FOUND","message": "valeur interdite","data": {"user_id": 10}})
+        raise HTTPException(status_code=403, detail={"success": False,"code": "USER_NOT_FOUND","message": "valeur interdite","data": {"user_id": 10}})
 
     try:
         data = selection()
         for d in data:
             if d["donnee"] == item:
-                raise HTTPException(status_code=404, detail={"success": False,"code": "USER_NOT_FOUND","message": "la donne existe deja","data": {"user_id": 10}})
+                raise HTTPException(status_code=409, detail={"success": False,"code": "USER_NOT_FOUND","message": "la donne existe deja","data": {"user_id": 10}})
         creation(item)
         logger.info("Donnée enregistrée")
         return {"message": "La donnée a été sauvegardée"}
@@ -82,14 +82,14 @@ def create_donnee(item: str)->List[str]:
         raise  # On laisse passer nos propres erreurs HTTP
     except Exception as e:
         logger.error(f"Erreur critique lors de la création : {e}")
-        raise HTTPException(status_code=404, detail={"success": False,"code": "USER_NOT_FOUND","message": "imposible de sauvegarder la donneee","data": {"user_id": 10}})
+        raise HTTPException(status_code=500, detail={"success": False,"code": "USER_NOT_FOUND","message": "imposible de sauvegarder la donneee","data": {"user_id": 10}})
 
 
 
 # Permet la mise à jour sécurisée des données
 def update_donnee(item_id: int, donnee_text: str)->Dict[str,str]:
     if not donnee_text or not donnee_text.strip():
-        raise HTTPException(status_code=404, detail={"success": False,"code": "USER_NOT_FOUND","message": "valeur vide interdite","data": {"user_id": 10}})
+        raise HTTPException(status_code=422, detail={"success": False,"code": "USER_NOT_FOUND","message": "valeur vide interdite","data": {"user_id": 10}})
 
     try:
         data = selection()
@@ -105,7 +105,7 @@ def update_donnee(item_id: int, donnee_text: str)->Dict[str,str]:
         raise
     except Exception as e:
         logger.error(f"Erreur critique lors de la modification de {item_id} : {e}")
-        raise HTTPException(status_code=404, detail={"success": False,"code": "USER_NOT_FOUND","message": "erreur lors de la modification","data": {"user_id": 10}})
+        raise HTTPException(status_code=500, detail={"success": False,"code": "USER_NOT_FOUND","message": "erreur lors de la modification","data": {"user_id": 10}})
 
 
 # Supprime proprement et gère l'absence de l'élément
@@ -124,7 +124,7 @@ def delete_donnee(item: int)->Dict[str,Any]:
         raise
     except Exception as e:
         logger.error(f"Erreur critique lors de la suppression de {item} : {e}")
-        raise HTTPException(status_code=404, detail={"success": False,"code": "USER_NOT_FOUND","message": "erreur lors de la suppresion","data": {"user_id": 10}})
+        raise HTTPException(status_code=500, detail={"success": False,"code": "USER_NOT_FOUND","message": "erreur lors de la suppresion","data": {"user_id": 10}})
 
 
 def ping():
