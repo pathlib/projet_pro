@@ -15,7 +15,7 @@ curs = conn.cursor()
 curs.execute("""
 CREATE TABLE IF NOT EXISTS donnees (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    donnee TEXT
+    donnee TEXT NOT NULL
 )
 """)
 conn.commit()

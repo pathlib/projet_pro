@@ -1,4 +1,4 @@
-def guis()-> str:
+def guis() -> str:
     return """
     <!DOCTYPE html>
 <html lang="fr">
@@ -116,8 +116,10 @@ def guis()-> str:
 </body>
 </html>
     """
-def gui2()->str:
-    return"""<!DOCTYPE html>
+
+
+def gui2() -> str:
+    return """<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
