@@ -1,6 +1,62 @@
-2026-07-12 11:08:09,455 - INFO - API allumer - API allumer
-2026-07-12 11:08:28,737 - INFO - API allumer - API allumer
-2026-07-12 11:28:06,193 - INFO - API allumer - 650
-2026-07-12 11:28:35,269 - INFO - API allumer - 650
-2026-07-12 11:37:17,897 - INFO - API allumer - 697
-2026-07-12 11:37:57,546 - INFO - Donnée numéro 5 supprimée-user10 - 697
+
+2026-08-09 18:55:23,942 - ERROR - Erreur critique lors de la création : Invalid input of type: 'NoneType'. Convert to a bytes, string, int or float first. - 10
+Traceback (most recent call last):
+  File "/home/valteck/PycharmProjects/PythonProject/service/logique.py", line 185, in create_donnee
+    set_cache(v, c)
+    ~~~~~~~~~^^^^^^
+  File "/home/valteck/PycharmProjects/PythonProject/utils/cache.py", line 13, in set_cache
+    client.set(key, items, ex=ttl)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/redis/utils.py", line 523, in wrapper
+    return func(*args, **kwargs)
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/redis/commands/core.py", line 4315, in set
+    return self.execute_command("SET", *pieces, **options)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/redis/client.py", line 798, in execute_command
+    return self._execute_command(*args, **options)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/redis/client.py", line 820, in _execute_command
+    result = conn.retry.call_with_retry(
+        lambda: self._send_command_parse_response(
+    ...<3 lines>...
+        with_failure_count=True,
+    )
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/redis/retry.py", line 120, in call_with_retry
+    return do()
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/redis/client.py", line 821, in <lambda>
+    lambda: self._send_command_parse_response(
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        conn, command_name, *args, **options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/redis/client.py", line 763, in _send_command_parse_response
+    conn.send_command(*args, **options)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/redis/connection.py", line 1337, in send_command
+    self._command_packer.pack(*args),
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/redis/connection.py", line 167, in pack
+    for arg in map(self.encode, args):
+               ~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/redis/_parsers/encoders.py", line 29, in encode
+    raise DataError(
+    ...<2 lines>...
+    )
+redis.exceptions.DataError: Invalid input of type: 'NoneType'. Convert to a bytes, string, int or float first.
+2026-08-09 19:17:40,860 - ERROR - Erreur critique lors de la création : (406, "PRECONDITION_FAILED - inequivalent arg 'x-dead-letter-exchange' for queue 'hello' in vhost '/': received none but current is the value 'dead_letter_exchange' of type 'longstr'") - 10
+Traceback (most recent call last):
+  File "/home/valteck/PycharmProjects/PythonProject/service/logique.py", line 188, in create_donnee
+    message(c)
+    ~~~~~~~^^^
+  File "/home/valteck/PycharmProjects/PythonProject/service/broker.py", line 17, in message
+    channel.queue_declare(queue="hello", durable=True)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/pika/adapters/blocking_connection.py", line 2646, in queue_declare
+    self._flush_output(declare_ok_result.is_ready)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/valteck/PycharmProjects/PythonProject/venv/lib/python3.13/site-packages/pika/adapters/blocking_connection.py", line 1426, in _flush_output
+    raise self._closing_reason  # pylint: disable=E0702
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+pika.exceptions.ChannelClosedByBroker: (406, "PRECONDITION_FAILED - inequivalent arg 'x-dead-letter-exchange' for queue 'hello' in vhost '/': received none but current is the value 'dead_letter_exchange' of type 'longstr'")
+2026-08-09 19:25:48,662 - INFO - API allumer

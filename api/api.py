@@ -7,10 +7,20 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from fastapi import Request, APIRouter
 from prometheus_fastapi_instrumentator import Instrumentator
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+from opentelemetry import trace
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 
+trace.set_tracer_provider(TracerProvider())
+
+trace.get_tracer_provider().add_span_processor(
+    BatchSpanProcessor(OTLPSpanExporter(endpoint="localhost:4317", insecure=True))
+)
 app = FastAPI()
 
-
+FastAPIInstrumentor.instrument_app(app)
 Instrumentator().instrument(app).expose(app)
 
 

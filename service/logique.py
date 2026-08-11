@@ -1,14 +1,22 @@
+from sys import audit
+
 from securite import securites
 from pydantic import BaseModel
 from fastapi import Query, HTTPException
-from utils.loggers import logger
+from utils.loggers import logger, audit
 from utils.gui import guis, gui2
-
-# from base_de_donnees.base_de_donnee import selection, deletion, creation, modification
-from typing import Any, Dict, List
+from typing import Any, Dict
 from dotenv import load_dotenv
+from utils.cache import get_cache, set_cache, client
+from tenacity import retry, stop_after_attempt, wait_exponential
+from service.broker import message, recois
 import pybreaker
 import os
+
+# -------------
+# log
+users = 10
+# -----------
 
 try:
     from base_de_donnees.base_de_donnee import (
@@ -17,8 +25,8 @@ try:
         creation,
         modification,
     )
-except Exception:
-    pass
+except Exception as e:
+    print(e)
 
 
 class Donnee(BaseModel):
@@ -32,6 +40,7 @@ load_dotenv()
 s = os.getenv("SECRET_KEY")
 # __________________________________
 
+
 breaker = pybreaker.CircuitBreaker(fail_max=5, reset_timeout=60)
 
 
@@ -41,8 +50,9 @@ def home() -> Any:
         logger.info("API allumer")
         securites.atest()
         return guis()
+
     except Exception as e:
-        logger.error(f"Erreur lors de l'affichage GUI : {e}-{'user10'}")
+        logger.error(f"Erreur lors de l'affichage GUI{e}")
         raise HTTPException(
             status_code=500,
             detail={
@@ -74,7 +84,7 @@ def recherche_donnee(item: Any) -> Dict[str, Any]:
         )
 
     except Exception as e:
-        logger.error(f"Erreur BDD (selection) : {e}-{'user10'}")
+        logger.error(f"Erreur BDD (selection) : {e} - {'user10'}")
         raise HTTPException(
             status_code=500,
             detail={
@@ -93,7 +103,7 @@ def recherche_donnee(item: Any) -> Dict[str, Any]:
                 return {"data": d}
 
         except (ValueError, KeyError) as e:
-            logger.warning(f"Donnée corrompue détectée en BDD : {e}-{'user10'}")
+            logger.warning(f"Donnée corrompue détectée en BDD : {e} - {users}")
             continue
     raise HTTPException(
         status_code=404,
@@ -125,7 +135,7 @@ def get_donnee(
         )
 
     except Exception as e:
-        logger.error(f"Erreur BDD (get_donnee) : {e}-{'user10'}")
+        logger.error(f"Erreur BDD (get_donnee) : {e} - {'user10'}")
         raise HTTPException(
             status_code=404,
             detail={
@@ -151,6 +161,10 @@ def create_donnee(item: str):
         )
 
     try:
+        cache = get_cache(item)
+        if cache:
+            return cache
+
         data = breaker.call(selection)
         for d in data:
             if d["donnee"] == item:
@@ -163,12 +177,16 @@ def create_donnee(item: str):
                         "data": {"user_id": 10},
                     },
                 )
-        breaker.call(creation, item)
-        logger.info("Donnée enregistrée")
+
+        c = breaker.call(creation, item)
+        set_cache(item, c)
+
+        message(c)
+        audit.info(f"Donnée enregistrée {users}")
         return {"message": "La donnée a été sauvegardée"}
 
     except pybreaker.CircuitBreakerError:
-        logger.error(f"erreur de db-{'user10'}")
+        logger.error(f"erreur de db - {users}")
         raise HTTPException(
             status_code=503,
             detail={
@@ -181,7 +199,7 @@ def create_donnee(item: str):
     except HTTPException:
         raise  # On laisse passer nos propres erreurs HTTP
     except Exception as e:
-        logger.error(f"Erreur critique lors de la création : {e}-{'user10'}")
+        logger.exception(f"Erreur critique lors de la création : {e} - {users}")
         raise HTTPException(
             status_code=500,
             detail={
@@ -211,7 +229,7 @@ def update_donnee(item_id: int, donnee_text: str) -> Dict[str, str]:
         for d in data:
             if int(d["id"]) == item_id:
                 breaker.call(modification, item_id, donnee_text)
-                logger.info(f"Donnée {item_id} modifiée-{'user10'}")
+                audit.info(f"Donnée {item_id} modifiée - {users}")
                 return {"message": "Modification réussie"}
 
         raise HTTPException(
@@ -228,7 +246,7 @@ def update_donnee(item_id: int, donnee_text: str) -> Dict[str, str]:
         raise
 
     except pybreaker.CircuitBreakerError:
-        logger.error(f"erreur de db-{'user10'}")
+        logger.error(f"erreur de db - {users}")
         raise HTTPException(
             status_code=503,
             detail={
@@ -239,7 +257,9 @@ def update_donnee(item_id: int, donnee_text: str) -> Dict[str, str]:
         )
 
     except Exception as e:
-        logger.error(f"Erreur critique lors de la modification de {item_id} : {e}-{'user10'}")
+        logger.error(
+            f"Erreur critique lors de la modification de {item_id} : {e} - {users}"
+        )
         raise HTTPException(
             status_code=500,
             detail={
@@ -259,7 +279,7 @@ def delete_donnee(item: int) -> Dict[str, Any]:
             if int(d["id"]) == item:
 
                 breaker.call(deletion, item)
-                logger.info(f"Donnée numéro {item} supprimée-{'user10'}")
+                audit.info(f"Donnée numéro {item} supprimée - {users}")
                 return {"message": f"La donnée {item} a bien été supprimée"}
 
         raise HTTPException(
@@ -272,7 +292,7 @@ def delete_donnee(item: int) -> Dict[str, Any]:
             },
         )
     except pybreaker.CircuitBreakerError:
-        logger.error(f"erreur de db-{'user10'}")
+        logger.error(f"erreur de db-{users}")
         raise HTTPException(
             status_code=503,
             detail={
@@ -285,7 +305,9 @@ def delete_donnee(item: int) -> Dict[str, Any]:
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Erreur critique lors de la suppression de {item} : {e}-{'user10'}")
+        logger.error(
+            f"Erreur critique lors de la suppression de {item} : {e} -  {users}"
+        )
         raise HTTPException(
             status_code=500,
             detail={
@@ -301,11 +323,13 @@ def ping():
     return {"message": "Ping reussie"}
 
 
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def ready():
     try:
         data = breaker.call(selection)
         if data is not None:
-            return True
+            logger.error("base de donnee introuvable")
+            return False
     except Exception:
         raise HTTPException(
             status_code=503,

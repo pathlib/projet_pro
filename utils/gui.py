@@ -104,6 +104,9 @@ def guis() -> str:
       <ul>
         <li>sqlite</li>
         <li>logger</li>
+        <li>slowapi</li>
+        <li>black</li>
+        <li>pytest</li>
       </ul>
     </div>
 
@@ -249,6 +252,9 @@ def gui2() -> str:
       <ul>
         <li>SQLite</li>
         <li>Logger</li>
+        <li>slowapi</li>
+        <li>black</li>
+        <li>pytest</li>
       </ul>
     </div>
 

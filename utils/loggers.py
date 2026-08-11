@@ -1,24 +1,19 @@
 import logging
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s - %(process)d",
-    handlers=[logging.FileHandler("utils/api.log"), logging.StreamHandler()],
-)
+logger = logging.getLogger("api")
+logger.setLevel(logging.DEBUG)
 
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
+# Premier fichier logging
+file_handler = logging.FileHandler("utils/api.log", encoding="utf-8")
+file_handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+file_handler.setFormatter(formatter)
 
+# Deuxième fichier d audit
+audit = logging.getLogger("audit")
+file_handler1 = logging.FileHandler("utils/audit.log", encoding="utf-8")
+file_handler1.setLevel(logging.INFO)
+file_handler1.setFormatter(formatter)
 
-
-
-
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s - %(process)d",
-    handlers=[logging.FileHandler("utils/audit.log"), logging.StreamHandler()],
-)
-
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
+logger.addHandler(file_handler)
+audit.addHandler(file_handler1)
