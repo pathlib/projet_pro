@@ -12,7 +12,8 @@ from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
-
+from utils.loggers import audit
+import uuid
 trace.set_tracer_provider(TracerProvider())
 
 trace.get_tracer_provider().add_span_processor(
@@ -28,6 +29,8 @@ Instrumentator().instrument(app).expose(app)
 def times(request, call_next):
     start = time.time()
     response = call_next(request)
+    trace_id = str(uuid.uuid4())
+    audit.info(f"{trace_id}")
     end = time.time()
     print(f"Temps : {end - start:.3f}s")
     return response

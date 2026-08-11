@@ -12,6 +12,8 @@ from tenacity import retry, stop_after_attempt, wait_exponential
 from service.broker import message, recois
 import pybreaker
 import os
+import uuid
+
 
 # -------------
 # log
@@ -37,9 +39,8 @@ class Donnee(BaseModel):
 # _________________________________
 # en cour d implementation
 load_dotenv()
-s = os.getenv("SECRET_KEY")
+SECRET = os.getenv("SECRET_KEY")
 # __________________________________
-
 
 breaker = pybreaker.CircuitBreaker(fail_max=5, reset_timeout=60)
 
@@ -65,7 +66,19 @@ def home() -> Any:
 
 
 def home2():
-    return gui2()
+    try:
+        return gui2()
+    except Exception as e:
+        logger.error(f"Erreur lors de l'affichage GUI{e}")
+        raise HTTPException(
+            status_code=500,
+            detail={
+                "success": False,
+                "code": "USER_NOT_FOUND",
+                "message": "erreur interne du serveur",
+                "data": {"user_id": 10},
+            },
+        )
 
 
 # Recherche sécurisée
@@ -179,6 +192,8 @@ def create_donnee(item: str):
                 )
 
         c = breaker.call(creation, item)
+        #erreur
+        c="probleme de cache"
         set_cache(item, c)
 
         message(c)

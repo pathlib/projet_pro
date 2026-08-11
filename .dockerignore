@@ -1,0 +1,14 @@
+#git
+.git/
+.gitignore
+.gitattributes
+
+# Environnement Python
+.venv/
+venv/
+env/
+
+__pycache__/
+*.py[cod]
+
+README.md

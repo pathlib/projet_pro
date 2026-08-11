@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.*
+.cache/
+**/.cache/
+*.cache
+.idea/
+__pycache__/
+*.py[cod]
+*.pyc

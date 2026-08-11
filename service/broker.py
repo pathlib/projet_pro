@@ -3,11 +3,17 @@ import threading
 import os
 from dotenv import load_dotenv
 
+# ERREUR DE ENV
 load_dotenv()
-USERS = os.getenv("user")
-PASSWORD = os.getenv("passworld")
+RABBITMQ_USER = os.getenv("RABBITMQ_USER")
+RABBITMQ_PASSWORD = os.getenv("RABBITMQ_PASSWORD")
 RABBITMQ_HOST = os.getenv("RABBITMQ_HOST")
 RABBITMQ_PORT = os.getenv("RABBITMQ_PORT")
+
+print(RABBITMQ_HOST)
+print(RABBITMQ_PORT)
+print(RABBITMQ_USER)
+print(RABBITMQ_PASSWORD)
 
 
 def message(messages):
@@ -15,11 +21,12 @@ def message(messages):
         pika.ConnectionParameters(
             host=RABBITMQ_HOST,
             port=RABBITMQ_PORT,
-            credentials=pika.PlainCredentials(USERS, PASSWORD),
+            credentials=pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD),
         )
     )
 
     channel = connection.channel()
+
     channel.queue_declare(
         queue="hello",
         durable=True,
@@ -48,9 +55,9 @@ def callback(ch, method, properties, body):
 def recois():
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(
-            host="localhost",
-            port=5672,
-            credentials=pika.PlainCredentials("guest", "guest"),
+            host=RABBITMQ_HOST,
+            port=RABBITMQ_PORT,
+            credentials=pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD),
         )
     )
 

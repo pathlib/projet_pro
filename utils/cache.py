@@ -4,10 +4,10 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-HOST = os.getenv("HOST")
-PORT = os.getenv("PORT")
-
-client = redis.Redis(host=HOST, port=PORT, decode_responses=True)
+REDIS_HOST = os.getenv("REDIS_HOST")
+REDIS_PORT = os.getenv("REDIS_PORT")
+print(REDIS_HOST, REDIS_PORT)
+client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 
 def get_cache(key):
