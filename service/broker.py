@@ -10,11 +10,6 @@ RABBITMQ_PASSWORD = os.getenv("RABBITMQ_PASSWORD")
 RABBITMQ_HOST = os.getenv("RABBITMQ_HOST")
 RABBITMQ_PORT = os.getenv("RABBITMQ_PORT")
 
-print(RABBITMQ_HOST)
-print(RABBITMQ_PORT)
-print(RABBITMQ_USER)
-print(RABBITMQ_PASSWORD)
-
 
 def message(messages):
     connection = pika.BlockingConnection(
