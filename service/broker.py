@@ -36,7 +36,7 @@ def message(messages):
         },
     )
     # producteur
-    channel.basic_publish(exchange="", routing_key="hello", body=messages)
+    channel.basic_publish(exchange="", routing_key="hello", body=messages.encode())
     print(" [x] Sent 'Hello World!'")
     connection.close()
 
@@ -45,11 +45,15 @@ print("Connexion OK")
 
 
 def callback(ch, method, properties, body):
-    message = body.decode()
+    try:
+        message = body.decode()
 
-    print("Message reçu :")
-    print(message)
-    # action a mener
+        print("Message reçu :")
+        print(message)
+        # action a mener
+        ch.basic_ack(delivery_tag=method.delivery_tag)
+    except Exception as e:
+        ch.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
 
 
 def recois():

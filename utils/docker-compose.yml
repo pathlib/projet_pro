@@ -1,12 +1,166 @@
 services:
 
-  api.api:
-    build: .
+  api:
+    build:
+      context: .
+    container_name: mon-api
     ports:
       - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+      - jaeger
+
+    networks:
+      - mon-reseau
+
 
   postgres:
-    image: postgres:16
+    image: docker.io/library/postgres:16
+    container_name: postgres
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mon-api
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+    networks:
+      - mon-reseau
+
 
   redis:
-    image: redis:7
+    image: docker.io/library/redis:7
+    container_name: redis
+
+    ports:
+      - "6379:6379"
+
+    volumes:
+      - redis-data:/data
+
+    networks:
+      - mon-reseau
+
+
+  rabbitmq:
+    image: docker.io/library/rabbitmq:4-management
+    container_name: rabbitmq
+
+    hostname: rabbitmq
+
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+    networks:
+      - mon-reseau
+
+
+  jaeger:
+    image: docker.io/jaegertracing/jaeger:2.20.0
+    container_name: jaeger
+
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+      - "4318:4318"
+
+    networks:
+      - mon-reseau
+
+
+  loki:
+    image: docker.io/grafana/loki:3
+    container_name: loki
+
+    ports:
+      - "3100:3100"
+
+    volumes:
+      - loki-data:/loki
+
+    networks:
+      - mon-reseau
+
+
+  grafana:
+    image: docker.io/grafana/grafana:latest
+    container_name: grafana
+
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+    depends_on:
+      - loki
+      - prometheus
+
+    networks:
+      - mon-reseau
+
+
+  prometheus:
+    image: docker.io/prom/prometheus:latest
+    container_name: prometheus
+
+    ports:
+      - "9090:9090"
+
+    volumes:
+      - prometheus-data:/prometheus
+
+    networks:
+      - mon-reseau
+
+
+  node-exporter:
+    image: docker.io/prom/node-exporter:latest
+    container_name: node-exporter
+
+    ports:
+      - "9100:9100"
+
+    networks:
+      - mon-reseau
+
+
+  otel-collector:
+    image: docker.io/otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+
+    ports:
+      - "4319:4317"
+      - "4320:4318"
+
+    networks:
+      - mon-reseau
+
+
+networks:
+  mon-reseau:
+    driver: bridge
+
+
+volumes:
+  postgres-data:
+  redis-data:
+  rabbitmq-data:
+  loki-data:
+  grafana-data:
+  prometheus-data:

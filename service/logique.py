@@ -1,5 +1,4 @@
 from sys import audit
-
 from securite import securites
 from pydantic import BaseModel
 from fastapi import Query, HTTPException
@@ -7,18 +6,13 @@ from utils.loggers import logger, audit
 from utils.gui import guis, gui2
 from typing import Any, Dict
 from dotenv import load_dotenv
-from utils.cache import get_cache, set_cache, client
+from utils.cache import get_cache, set_cache
 from tenacity import retry, stop_after_attempt, wait_exponential
-from service.broker import message, recois
+from service.broker import message
 import pybreaker
-import os
+from opentelemetry import trace
 import uuid
 
-
-# -------------
-# log
-users = 10
-# -----------
 
 try:
     from base_de_donnees.base_de_donnee import (
@@ -36,10 +30,17 @@ class Donnee(BaseModel):
     id: int
 
 
+tracer = trace.get_tracer(__name__)
+# -------------
+# log
+users = 10
+# -----------
+trace_id = str(uuid.uuid4())
 # _________________________________
 # en cour d implementation
-load_dotenv()
-SECRET = os.getenv("SECRET_KEY")
+def compte():
+    print(12)
+
 # __________________________________
 
 breaker = pybreaker.CircuitBreaker(fail_max=5, reset_timeout=60)
@@ -84,7 +85,8 @@ def home2():
 # Recherche sécurisée
 def recherche_donnee(item: Any) -> Dict[str, Any]:
     try:
-        data = breaker.call(selection)
+        with tracer.start_as_current_span("db.recherche") as db_span:
+            data = breaker.call(selection)
     except pybreaker.CircuitBreakerError:
         logger.error("Circuit ouvert : accès à la base refusé")
         raise HTTPException(
@@ -95,7 +97,6 @@ def recherche_donnee(item: Any) -> Dict[str, Any]:
                 "message": "La base de données est temporairement indisponible.",
             },
         )
-
     except Exception as e:
         logger.error(f"Erreur BDD (selection) : {e} - {'user10'}")
         raise HTTPException(
@@ -130,12 +131,14 @@ def recherche_donnee(item: Any) -> Dict[str, Any]:
 
 
 # Obtenir les données avec une limite maximale stricte
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def get_donnee(
     limit: int = Query(10, ge=1, le=100), offset: int = Query(0, ge=0)
 ) -> Dict[str, Any]:
     try:
-        data = breaker.call(selection)
-        return {"data": data[offset : offset + limit]}
+        with tracer.start_as_current_span("db.get_donnee") as db_span:
+            data = breaker.call(selection)
+            return {"data": data[offset : offset + limit]}
     except pybreaker.CircuitBreakerError:
         logger.error(f"erreur de db-{'user10'}")
         raise HTTPException(
@@ -161,6 +164,7 @@ def get_donnee(
 
 
 # Permet de créer les données de façon sécurisée
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def create_donnee(item: str):
     if not item or not item.strip():
         raise HTTPException(
@@ -190,15 +194,16 @@ def create_donnee(item: str):
                         "data": {"user_id": 10},
                     },
                 )
+        with tracer.start_as_current_span("db.creation") as db_span:
+            c = breaker.call(creation, item)
+            # erreur
+        with tracer.start_as_current_span("message rabitmq") as db_span:
+            c = "probleme de cache"
+            set_cache(item, c)
 
-        c = breaker.call(creation, item)
-        #erreur
-        c="probleme de cache"
-        set_cache(item, c)
-
-        message(c)
-        audit.info(f"Donnée enregistrée {users}")
-        return {"message": "La donnée a été sauvegardée"}
+            message(c)
+            audit.info(f"Donnée enregistrée {users}")
+            return {"message": "La donnée a été sauvegardée"}
 
     except pybreaker.CircuitBreakerError:
         logger.error(f"erreur de db - {users}")
@@ -220,13 +225,14 @@ def create_donnee(item: str):
             detail={
                 "success": False,
                 "code": "USER_NOT_FOUND",
-                "message": "imposible de sauvegarder la donneee",
+                "message": "erreur interne",
                 "data": {"user_id": 10},
             },
         )
 
 
 # Permet la mise à jour sécurisée des données
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def update_donnee(item_id: int, donnee_text: str) -> Dict[str, str]:
     if not donnee_text or not donnee_text.strip():
         raise HTTPException(
@@ -243,9 +249,10 @@ def update_donnee(item_id: int, donnee_text: str) -> Dict[str, str]:
         data = breaker.call(selection)
         for d in data:
             if int(d["id"]) == item_id:
-                breaker.call(modification, item_id, donnee_text)
-                audit.info(f"Donnée {item_id} modifiée - {users}")
-                return {"message": "Modification réussie"}
+                with tracer.start_as_current_span("db.update") as db_span:
+                    breaker.call(modification, item_id, donnee_text)
+                    audit.info(f"Donnée {item_id} modifiée - {users}")
+                    return {"message": "Modification réussie"}
 
         raise HTTPException(
             status_code=404,
@@ -287,15 +294,16 @@ def update_donnee(item_id: int, donnee_text: str) -> Dict[str, str]:
 
 
 # Supprime proprement et gère l'absence de l'élément
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def delete_donnee(item: int) -> Dict[str, Any]:
     try:
         data = breaker.call(selection)
         for d in data:
             if int(d["id"]) == item:
-
-                breaker.call(deletion, item)
-                audit.info(f"Donnée numéro {item} supprimée - {users}")
-                return {"message": f"La donnée {item} a bien été supprimée"}
+                with tracer.start_as_current_span("db.deletion") as db_span:
+                    breaker.call(deletion, item)
+                    audit.info(f"Donnée numéro {item} supprimée - {users}")
+                    return {"message": f"La donnée {item} a bien été supprimée"}
 
         raise HTTPException(
             status_code=404,
@@ -333,7 +341,7 @@ def delete_donnee(item: int) -> Dict[str, Any]:
             },
         )
 
-
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def ping():
     return {"message": "Ping reussie"}
 
@@ -341,10 +349,13 @@ def ping():
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def ready():
     try:
-        data = breaker.call(selection)
+        with tracer.start_as_current_span("db.ready") as db_span:
+            data = breaker.call(selection)
         if data is not None:
             logger.error("base de donnee introuvable")
+
             return False
+
     except Exception:
         raise HTTPException(
             status_code=503,
@@ -355,3 +366,13 @@ def ready():
                 "data": {"user_id": 10},
             },
         )
+
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
+def telemetry():
+    tracer = trace.get_tracer("test")
+
+    with tracer.start_as_current_span("mon-test-jaeger") as span:
+        span.set_attribute("test.message", "Bonjour Jaeger")
+        span.set_attribute("test.number", 123)
+
+    return {"status": "ok"}

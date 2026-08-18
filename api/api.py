@@ -13,16 +13,26 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 from utils.loggers import audit
+from opentelemetry.instrumentation.pika import PikaInstrumentor
 import uuid
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+OTP = os.getenv("OTP")
 trace.set_tracer_provider(TracerProvider())
 
 trace.get_tracer_provider().add_span_processor(
-    BatchSpanProcessor(OTLPSpanExporter(endpoint="localhost:4317", insecure=True))
+    BatchSpanProcessor(OTLPSpanExporter(endpoint=OTP, insecure=True))
 )
+
 app = FastAPI()
 
+PikaInstrumentor().instrument()
 FastAPIInstrumentor.instrument_app(app)
 Instrumentator().instrument(app).expose(app)
+print(OTP)
+print("55")
 
 
 @app.middleware("http")
@@ -106,6 +116,12 @@ def ping(request: Request):
 @limiter.limit("3/second")
 def db(request: Request):
     return logique.ready()
+
+
+@app.get("/test-opentelemetry")
+@limiter.limit("3/second")
+def telemetry(request: Request):
+    return logique.telemetry()
 
 
 app.include_router(router)

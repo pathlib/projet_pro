@@ -20,15 +20,15 @@ def set_cache(key, items, ttl=3600):
     return items
 
 
-sessions = "bienvenue"
+sessions = 0
 MAX = 20
-n = 60
+EXPIRATION = 60
 
 
-def session(sessions: str):
+def session(sessions: int):
     count = client.incr(sessions)
     if count == 1:
-        client.expire(sessions, n)
+        client.expire(sessions, EXPIRATION)
         print(sessions)
     if count > MAX:
         raise HTTPException(status_code=429, detail={"Trop de requêtes"})

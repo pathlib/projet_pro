@@ -1,5 +1,6 @@
 node_modules/
 .env
+*.log
 .env.*
 .cache/
 **/.cache/
@@ -8,3 +9,5 @@ node_modules/
 __pycache__/
 *.py[cod]
 *.pyc
+
+
