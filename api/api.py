@@ -6,33 +6,38 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from fastapi import Request, APIRouter
-from prometheus_fastapi_instrumentator import Instrumentator
-from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
-from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor
-from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
-from utils.loggers import audit
-from opentelemetry.instrumentation.pika import PikaInstrumentor
 import uuid
 import os
 from dotenv import load_dotenv
+from service.telemetry import init_opentelemetry
+from service.shutdown_load import shutdowns
+import threading
 
 load_dotenv()
-OTP = os.getenv("OTP")
-trace.set_tracer_provider(TracerProvider())
 
-trace.get_tracer_provider().add_span_processor(
-    BatchSpanProcessor(OTLPSpanExporter(endpoint=OTP, insecure=True))
-)
+test = 0
+is_time = threading.Lock()
 
-app = FastAPI()
 
-PikaInstrumentor().instrument()
-FastAPIInstrumentor.instrument_app(app)
-Instrumentator().instrument(app).expose(app)
-print(OTP)
-print("55")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    try:
+        yield
+    except Exception as e:
+        logger.exception("Erreur pendant le lifespan")
+        raise
+    finally:
+        with is_time:
+            global test
+            print("Début du graceful shutdown")
+            if not test:
+                shutdowns(app)
+                test = True
+            print("Graceful shutdown terminé")
+
+
+app = FastAPI(lifespan=lifespan)
+init_opentelemetry(app)
 
 
 @app.middleware("http")
@@ -40,7 +45,6 @@ def times(request, call_next):
     start = time.time()
     response = call_next(request)
     trace_id = str(uuid.uuid4())
-    audit.info(f"{trace_id}")
     end = time.time()
     print(f"Temps : {end - start:.3f}s")
     return response
@@ -122,6 +126,12 @@ def db(request: Request):
 @limiter.limit("3/second")
 def telemetry(request: Request):
     return logique.telemetry()
+
+
+# test otel
+@app.get("/test-otel")
+async def test_otel():
+    return {"message": "OpenTelemetry fonctionne"}
 
 
 app.include_router(router)

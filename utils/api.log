@@ -1,16 +1,482 @@
-2026-08-12 00:44:49,710 - INFO - API allumer
-2026-08-12 21:55:28,265 - INFO - API allumer
-2026-08-12 22:03:05,061 - INFO - API allumer
-2026-08-16 18:38:05,530 - INFO - API allumer
-2026-08-16 18:38:42,523 - ERROR - base de donnee introuvable
-2026-08-16 18:38:43,524 - ERROR - base de donnee introuvable
-2026-08-16 18:38:45,524 - ERROR - base de donnee introuvable
-2026-08-16 18:39:38,189 - ERROR - base de donnee introuvable
-2026-08-16 18:39:39,190 - ERROR - base de donnee introuvable
-2026-08-16 18:39:41,191 - ERROR - base de donnee introuvable
-2026-08-16 18:46:33,911 - ERROR - base de donnee introuvable
-2026-08-16 18:46:34,912 - ERROR - base de donnee introuvable
-2026-08-16 18:46:36,912 - ERROR - base de donnee introuvable
-2026-08-16 18:47:09,101 - ERROR - base de donnee introuvable
-2026-08-16 18:47:10,102 - ERROR - base de donnee introuvable
-2026-08-16 18:47:12,102 - ERROR - base de donnee introuvable
+2026-08-22 17:31:22,183 - INFO - API allumer
+2026-08-22 17:38:25,433 - INFO - API allumer
+2026-08-22 17:38:25,683 - INFO - API allumer
+2026-08-22 17:38:26,018 - INFO - API allumer
+2026-08-22 17:38:26,572 - INFO - API allumer
+2026-08-22 17:59:58,836 - INFO - API allumer
+2026-08-22 18:04:00,517 - INFO - API allumer
+2026-08-22 20:59:13,860 - INFO - API allumer
+2026-08-23 11:25:09,272 - INFO - API allumer
+2026-08-23 11:38:38,007 - INFO - API allumer
+2026-08-23 11:38:38,240 - INFO - API allumer
+2026-08-23 11:38:38,398 - INFO - API allumer
+2026-08-23 11:38:45,869 - INFO - API allumer
+2026-08-23 11:38:46,502 - INFO - API allumer
+2026-08-23 11:38:47,187 - INFO - API allumer
+2026-08-23 11:38:47,836 - INFO - API allumer
+2026-08-23 11:38:48,467 - INFO - API allumer
+2026-08-23 11:38:49,120 - INFO - API allumer
+2026-08-23 11:38:49,658 - INFO - API allumer
+2026-08-23 11:38:50,350 - INFO - API allumer
+2026-08-23 11:38:50,514 - INFO - API allumer
+2026-08-23 11:38:50,677 - INFO - API allumer
+2026-08-23 11:38:51,075 - INFO - API allumer
+2026-08-23 11:38:51,258 - INFO - API allumer
+2026-08-23 11:39:23,595 - INFO - API allumer
+2026-08-23 13:06:43,096 - INFO - API allumer
+2026-08-23 13:07:02,076 - INFO - API allumer
+2026-08-23 13:22:21,404 - INFO - API allumer-7824af0d-e7a2-4c6d-9a07-344d2b838a6e-41ef45d1-4926-4e12-b513-6c5343a3a69f
+2026-08-23 13:22:22,090 - INFO - API allumer-7824af0d-e7a2-4c6d-9a07-344d2b838a6e-41ef45d1-4926-4e12-b513-6c5343a3a69f
+2026-08-23 14:22:20,221 - INFO - API allumer-5282cd56-d896-4680-82fe-0d439bbcc577-4f28763f-0e75-4139-8dc6-80a2f186815a
+2026-08-23 14:22:21,367 - INFO - API allumer-5282cd56-d896-4680-82fe-0d439bbcc577-4f28763f-0e75-4139-8dc6-80a2f186815a
+2026-08-23 14:22:22,046 - INFO - API allumer-5282cd56-d896-4680-82fe-0d439bbcc577-4f28763f-0e75-4139-8dc6-80a2f186815a
+2026-08-23 14:35:46,624 - INFO - API allumer-5383eb80-6c7f-42a8-945d-9dcab673ecb3-d316eda2-d9cf-4de8-8a5d-74828ccad4f1
+2026-08-23 14:36:08,447 - INFO - API V2 allumer-5383eb80-6c7f-42a8-945d-9dcab673ecb3-d316eda2-d9cf-4de8-8a5d-74828ccad4f1
+2026-08-23 14:36:11,451 - INFO - API V2 allumer-5383eb80-6c7f-42a8-945d-9dcab673ecb3-d316eda2-d9cf-4de8-8a5d-74828ccad4f1
+2026-08-23 14:36:12,505 - INFO - API V2 allumer-5383eb80-6c7f-42a8-945d-9dcab673ecb3-d316eda2-d9cf-4de8-8a5d-74828ccad4f1
+2026-08-23 14:36:17,141 - INFO - API allumer-5383eb80-6c7f-42a8-945d-9dcab673ecb3-d316eda2-d9cf-4de8-8a5d-74828ccad4f1
+2026-08-23 15:09:30,898 - INFO - API allumer-db3df639-c3ae-4af8-aec5-bb0c8ea9f05d|36085260-d383-4ddf-b063-c7c7061ca0f7
+2026-08-23 15:09:32,018 - INFO - API allumer-8dac5f8d-3fc0-4ebe-b653-86ce12246117|36085260-d383-4ddf-b063-c7c7061ca0f7
+2026-08-23 15:09:32,756 - INFO - API allumer-fc91f5e0-9302-419c-af40-2934d7bc876c|36085260-d383-4ddf-b063-c7c7061ca0f7
+2026-08-23 15:09:41,871 - INFO - API V2 allumer-ac5b56a2-d941-44ee-9f20-816088365da5|36085260-d383-4ddf-b063-c7c7061ca0f7
+2026-08-23 15:09:44,810 - INFO - API V2 allumer-b6c5129f-3960-4447-8172-39d06c0ff9f5|36085260-d383-4ddf-b063-c7c7061ca0f7
+2026-08-23 15:09:45,345 - INFO - API V2 allumer-c4064ebf-08ad-46fc-8efa-9fe34d8fe1e6|36085260-d383-4ddf-b063-c7c7061ca0f7
+2026-08-23 15:23:03,852 - ERROR - Erreur critique lors de la suppression de 21 : name 'requette_id' is not defined -  10
+2026-08-23 16:06:57,984 - INFO - API allumer-e4441330-fd1b-4b6b-a41b-1ac0d0f3407a|11275bf8-b88a-4af7-9377-49cffb9988ac
+2026-08-24 11:17:44,084 - INFO - API allumer-22122126-4ea2-48b5-b9d6-1e263550a1bd|11275bf8-b88a-4af7-9377-49cffb9988ac
+2026-08-24 11:32:26,259 - INFO - API allumer-fb89006b-8060-402e-95a5-706139de6a87|11275bf8-b88a-4af7-9377-49cffb9988ac
+2026-08-26 20:15:32 | INFO | GET /users -> 200 (0.042s)
+2026-08-26 20:15:33 | INFO | POST /users -> 201 (0.087s)
+2026-08-26 20:15:34 | ERROR | GET /users/42 -> ERROR (0.012s)
+2026-08-27 11:38:54,391 - INFO - API allumer-a871094d-eaa3-43bb-9b5f-ffd3cadbb2d3|969f0484-350a-46ee-94c6-9a141eb7069d
+2026-08-27 11:39:03,575 - INFO - API allumer-93ca3add-2a64-48ef-8433-3e5033831cbd|969f0484-350a-46ee-94c6-9a141eb7069d
+2026-08-27 11:39:03,720 - INFO - API allumer-99bb6c91-e0ed-4af1-a251-5273e4524062|969f0484-350a-46ee-94c6-9a141eb7069d
+2026-08-27 11:39:03,909 - INFO - API allumer-584ed4cb-0788-4630-b8c7-dfe45f494d76|969f0484-350a-46ee-94c6-9a141eb7069d
+2026-08-27 11:39:05,154 - INFO - API allumer-8d7f782c-a946-43dd-aaea-475da1f41e45|969f0484-350a-46ee-94c6-9a141eb7069d
+2026-08-27 11:39:55,726 - INFO - API allumer-638e696b-0d0b-466b-9ef5-373aaef37186|969f0484-350a-46ee-94c6-9a141eb7069d
+2026-08-27 11:49:13,191 - INFO - API allumer-8cfdaee8-45a0-492c-afc2-ecb029add0c2|d59d7d7f-72cc-47f5-ae82-c77c100a5445
+2026-08-27 11:49:14,947 - INFO - API allumer-4863d3ca-a3f5-4bf1-be77-7687d2da8412|d59d7d7f-72cc-47f5-ae82-c77c100a5445
+2026-08-27 12:10:37,691 - ERROR - Erreur lors de l'affichage GUI-string indices must be integers, not 'str'-trace_id= c7b77a88-78f2-4d23-81c6-df59ed536d25 requette_id= 0e3620af-a8fe-4011-8519-4052243a152eusers_id= ad518621-160c-4a97-ac23-8249c6c3695eservice= gui
+2026-08-27 12:10:44,342 - ERROR - Erreur lors de l'affichage GUI-string indices must be integers, not 'str'-trace_id= 5553a8e2-729a-433d-87d7-101497c199a6 requette_id= 37775714-d00f-49bb-aa79-33c054805365users_id= ad518621-160c-4a97-ac23-8249c6c3695eservice= gui
+2026-08-27 12:11:45,354 - ERROR - Erreur lors de l'affichage GUI-string indices must be integers, not 'str'-trace_id= 6406c300-2867-4efb-82c1-eccbd2d56e18 requette_id= 242b471d-a6d4-4edd-bb3d-1b6604ab8659users_id= ad518621-160c-4a97-ac23-8249c6c3695eservice= gui
+2026-08-27 12:12:14,184 - ERROR - Erreur lors de l'affichage GUIname 'logs' is not defined
+2026-08-27 12:12:21,152 - ERROR - Erreur lors de l'affichage GUIname 'logs' is not defined
+2026-08-27 12:12:22,951 - ERROR - Erreur lors de l'affichage GUIname 'logs' is not defined
+2026-08-27 12:14:34,305 - ERROR - Erreur lors de l'affichage GUIname 'logs' is not defined
+2026-08-27 12:14:35,548 - ERROR - Erreur lors de l'affichage GUIname 'logs' is not defined
+2026-08-27 12:19:20,551 - INFO - api alumer {logs}
+2026-08-27 12:21:22,828 - INFO - api alumer trace_id= f99e697d-a80e-4cf5-94e9-c7bbc0fc243d requette_id= 24450cee-5264-409b-9812-3f6a143d6417users_id= a8eea7e7-e419-4c38-ab50-b06dfb0cf141service= gui
+2026-08-27 12:34:39,138 - INFO - api alumer trace_id= f1a347cb-8a67-4f2b-a862-801f8228b074 requette_id= 4b36d66c-f047-44c7-91dc-8fca5f9eca98 users_id= c4d7dece-9cc1-40da-b3d0-217c0d565d25 service= gui
+2026-08-27 13:25:32,547 - INFO - api alumer trace_id=68a3cc51-36b3-46c7-b403-a711de7e913f requette_id=e63f8f0b-abd1-483e-81ba-8c78ebbaf6b4 users_id=5f93e7ee-8f16-48c0-8b02-183a94c8fc67 service=gui
+2026-08-27 13:25:37,681 - INFO - api alumer trace_id=08934c21-3f81-473f-bf73-3298d9ffc437 requette_id=93e862c1-749a-47ec-b31f-6bd8110b4bbe users_id=5f93e7ee-8f16-48c0-8b02-183a94c8fc67 service=gui
+2026-08-27 13:32:29,204 - INFO - api alumer trace_id=5ffd0faa-af09-4048-af5c-3667a9bd6b80 requette_id=241a189c-8db5-4cd0-8fc7-4c193fa453e0 users_id=605c05f0-7082-43f6-b2b1-48fad2fdca02 service=gui
+2026-08-27 16:44:50,706 - INFO - api alumer trace_id=44af9683-76e6-498a-ae13-2df3c167a462 requette_id=ebd6b45f-de06-40fe-aa55-bd3bac6c61fb users_id=0e5716fe-0f3e-45cc-a0fb-539f85bbc53a service=gui
+2026-08-27 16:45:27,059 - INFO - Arrêt en cours
+2026-08-27 16:45:27,059 - INFO - Arrêt du container celery
+2026-08-27 16:51:20,538 - INFO - Arrêt en cours
+2026-08-27 16:51:20,538 - INFO - Arrêt du container celery
+2026-08-27 16:51:20,538 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:53:13,691 - INFO - Arrêt en cours
+2026-08-27 16:53:13,691 - INFO - Arrêt du container celery
+2026-08-27 16:53:13,691 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:54:22,252 - INFO - Arrêt en cours
+2026-08-27 16:54:22,252 - INFO - Arrêt du container celery
+2026-08-27 16:54:22,254 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:54:23,788 - INFO - Arrêt en cours
+2026-08-27 16:54:23,788 - INFO - Arrêt du container celery
+2026-08-27 16:54:23,789 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:54:24,484 - INFO - Arrêt en cours
+2026-08-27 16:54:24,484 - INFO - Arrêt du container celery
+2026-08-27 16:54:24,484 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:54:24,758 - INFO - Arrêt en cours
+2026-08-27 16:54:24,759 - INFO - Arrêt du container celery
+2026-08-27 16:54:24,759 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:54:24,883 - INFO - Arrêt en cours
+2026-08-27 16:54:24,883 - INFO - Arrêt du container celery
+2026-08-27 16:54:24,884 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:54:25,043 - INFO - Arrêt en cours
+2026-08-27 16:54:25,043 - INFO - Arrêt du container celery
+2026-08-27 16:54:25,044 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:54:25,608 - INFO - Arrêt en cours
+2026-08-27 16:54:25,609 - INFO - Arrêt du container celery
+2026-08-27 16:54:25,610 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:54:25,934 - INFO - Arrêt en cours
+2026-08-27 16:54:25,934 - INFO - Arrêt du container celery
+2026-08-27 16:54:25,934 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:54:26,045 - INFO - Arrêt en cours
+2026-08-27 16:54:26,045 - INFO - Arrêt du container celery
+2026-08-27 16:54:26,046 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:54:26,202 - INFO - Arrêt en cours
+2026-08-27 16:54:26,202 - INFO - Arrêt du container celery
+2026-08-27 16:54:26,202 - INFO - Arrêt du container redisrabbitmq
+2026-08-27 16:56:47,073 - INFO - Arrêt en cours
+2026-08-27 16:56:47,073 - INFO - Arrêt du container celery
+2026-08-27 16:56:47,075 - INFO - Arrêt du container redisrabbitmq
+2026-08-28 10:48:30,950 - INFO - api alumer trace_id=25a242b7-784f-41dd-9e10-693e6e95e8f0 requette_id=090d7d8a-d40d-42c9-82d3-7d3844e060e3 users_id=9cc06e93-1638-4b10-a9c9-c7d7e8a2546b service=gui
+2026-08-28 10:49:24,688 - INFO - Arrêt en cours
+2026-08-28 10:49:24,688 - ERROR - Erreur RabbitMQ
+Traceback (most recent call last):
+  File "/app/service/logique.py", line 434, in shutdown
+    stopr()
+    ~~~~~^^
+  File "/app/service/broker.py", line 55, in stopr
+    rabbitmq.stopConsumers()
+    ^^^^^^^^
+NameError: name 'rabbitmq' is not defined
+2026-08-28 10:49:24,689 - INFO - Redis fermé
+2026-08-28 10:49:24,689 - ERROR - Erreur OpenTelemetry
+Traceback (most recent call last):
+  File "/app/service/logique.py", line 446, in shutdown
+    stopp()
+    ^^^^^
+NameError: name 'stopp' is not defined. Did you mean: 'stopr'?
+2026-08-28 10:49:24,694 - INFO - SQLite fermée
+2026-08-28 10:49:24,694 - INFO - ✅ SHUTDOWN : terminé
+2026-08-28 10:54:51,002 - INFO - api alumer trace_id=2a3c135a-9e74-4202-8b9f-ce3de0fe9d14 requette_id=3feb94be-7f5a-465b-b1b8-a59a511e22d2 users_id=3621d8d5-3d61-4c2b-aecf-95df17bf3455 service=gui
+2026-08-28 10:55:21,525 - INFO - Arrêt en cours
+2026-08-28 10:55:21,525 - ERROR - Erreur RabbitMQ
+Traceback (most recent call last):
+  File "/app/service/logique.py", line 434, in shutdown
+    stopr()
+    ~~~~~^^
+  File "/app/service/broker.py", line 55, in stopr
+    rabbitmq.stopConsumers()
+    ^^^^^^^^
+NameError: name 'rabbitmq' is not defined
+2026-08-28 10:55:21,526 - INFO - Redis fermé
+2026-08-28 10:55:21,526 - ERROR - Erreur OpenTelemetry
+Traceback (most recent call last):
+  File "/app/service/logique.py", line 446, in shutdown
+    stopp()
+    ^^^^^
+NameError: name 'stopp' is not defined. Did you mean: 'stopr'?
+2026-08-28 10:55:21,527 - INFO - SQLite fermée
+2026-08-28 10:55:21,527 - INFO - ✅ SHUTDOWN : terminé
+2026-08-28 11:06:22,885 - INFO - api alumer trace_id=3bd38b44-405b-4dd2-b9fa-cc92ca244a47 requette_id=5f01c3b5-68dc-4cad-be19-30ecc699b28b users_id=76e6f4b1-120a-44d3-9da4-21decb890a54 service=gui
+2026-08-28 11:06:41,449 - INFO - Arrêt en cours
+2026-08-28 11:06:41,449 - ERROR - Erreur RabbitMQ
+Traceback (most recent call last):
+  File "/app/service/logique.py", line 434, in shutdown
+    stoprabbitmq()
+    ~~~~~~~~~~~~^^
+  File "/app/service/broker.py", line 55, in stoprabbitmq
+    rabbitmq.stopConsumers()
+    ^^^^^^^^
+NameError: name 'rabbitmq' is not defined
+2026-08-28 11:06:41,450 - INFO - Redis fermé
+2026-08-28 11:06:41,450 - INFO - SQLite fermée
+2026-08-28 11:06:41,450 - INFO - ✅ SHUTDOWN : terminé
+2026-08-28 11:10:13,238 - INFO - Arrêt en cours
+2026-08-28 11:10:13,238 - ERROR - Erreur RabbitMQ
+Traceback (most recent call last):
+  File "/app/service/logique.py", line 434, in shutdown
+    stoprabbitmq()
+    ~~~~~~~~~~~~^^
+  File "/app/service/broker.py", line 55, in stoprabbitmq
+    rabbitmq.stopConsumers()
+    ^^^^^^^^
+NameError: name 'rabbitmq' is not defined
+2026-08-28 11:10:13,238 - INFO - Redis fermé
+2026-08-28 11:10:13,239 - INFO - SQLite fermée
+2026-08-28 11:10:13,239 - INFO - ✅ SHUTDOWN : terminé
+2026-08-28 11:11:43,521 - INFO - api alumer trace_id=9fea04e0-d2c8-4f69-b298-4e31e1f946de requette_id=1383a936-74d2-4862-8432-be333685a023 users_id=ff104c99-23ee-4b00-908f-a6f81eef2af5 service=gui
+2026-08-28 11:12:33,309 - INFO - Arrêt en cours
+2026-08-28 11:12:33,309 - ERROR - Erreur RabbitMQ
+Traceback (most recent call last):
+  File "/app/service/logique.py", line 434, in shutdown
+    stoprabbitmq()
+    ~~~~~~~~~~~~^^
+  File "/app/service/broker.py", line 55, in stoprabbitmq
+    channel.stopConsumers()
+    ^^^^^^^
+NameError: name 'channel' is not defined
+2026-08-28 11:12:33,311 - INFO - Redis fermé
+2026-08-28 11:12:33,311 - INFO - SQLite fermée
+2026-08-28 11:12:33,312 - INFO - ✅ SHUTDOWN : terminé
+2026-08-28 11:20:05,499 - INFO - api alumer trace_id=6b1e8c54-bcbd-46cb-9351-701c8e34ee49 requette_id=34ae67a9-6f9b-4fbe-86c2-00d57478558a users_id=ff104c99-23ee-4b00-908f-a6f81eef2af5 service=gui
+2026-09-03 19:38:02,516 - INFO - api alumer trace_id=50a553dd-9b07-4323-8481-5b580c9682d3 requette_id=725dbb0a-1d2b-456e-aee4-8f119c733891 users_id=3c29dea2-4362-4b66-a336-181dd3607f2f service=gui
+2026-09-05 13:38:14,530 - INFO - api alumer trace_id=22347715-180d-488a-b964-8f6957953b03 requette_id=ecfa42d4-727c-4d0e-93a2-0f25f8d4ee93 users_id=e5c2fc5d-429e-4a67-bfb5-4e04c0753d57 service=gui
+2026-09-05 14:12:31,463 - INFO - Arrêt en cours
+2026-09-05 14:12:31,463 - INFO - RabbitMQ fermé
+2026-09-05 14:17:11,616 - INFO - api alumer trace_id=ec936815-1a70-4396-a96a-60f885a06e95 requette_id=9ec86eac-b8d0-4fe7-8246-1466a4b7a2a3 users_id=7c4acc2a-0a62-492f-b299-a1a804925f36 service=gui
+2026-09-05 14:17:30,687 - INFO - Arrêt en cours
+2026-09-05 14:17:30,687 - INFO - RabbitMQ fermé
+2026-09-05 14:18:25,881 - INFO - un items a ete creer trace_id=d396e967-a263-4e58-9152-bc8a0bdcfcb8 requette_id=02365769-6492-46c5-8b2c-97227bad4899 users_id=7c4acc2a-0a62-492f-b299-a1a804925f36 service= create donnee
+2026-09-05 14:21:09,185 - INFO - api alumer trace_id=ebd92965-dc9e-4317-a15a-0e19de0ec835 requette_id=d9754da3-1941-4b5f-a439-25802c2fcf46 users_id=346f4b82-e880-499d-81d0-7df6b743e22d service=gui
+2026-09-05 14:21:36,161 - INFO - Arrêt en cours
+2026-09-05 14:21:36,162 - INFO - RabbitMQ fermé
+2026-09-05 14:21:53,241 - INFO - Arrêt en cours
+2026-09-05 14:21:53,241 - INFO - RabbitMQ fermé
+2026-09-05 14:21:54,356 - INFO - Arrêt en cours
+2026-09-05 14:21:54,356 - INFO - RabbitMQ fermé
+2026-09-05 14:21:54,518 - INFO - Arrêt en cours
+2026-09-05 14:21:54,518 - INFO - RabbitMQ fermé
+2026-09-05 14:21:54,673 - INFO - Arrêt en cours
+2026-09-05 14:21:54,673 - INFO - RabbitMQ fermé
+2026-09-05 14:21:55,369 - INFO - Arrêt en cours
+2026-09-05 14:21:55,369 - INFO - RabbitMQ fermé
+2026-09-05 14:21:55,515 - INFO - Arrêt en cours
+2026-09-05 14:21:55,515 - INFO - RabbitMQ fermé
+2026-09-05 14:21:55,681 - INFO - Arrêt en cours
+2026-09-05 14:21:55,681 - INFO - RabbitMQ fermé
+2026-09-05 14:21:56,775 - INFO - Arrêt en cours
+2026-09-05 14:21:56,775 - INFO - RabbitMQ fermé
+2026-09-05 14:21:57,467 - INFO - Arrêt en cours
+2026-09-05 14:21:57,467 - INFO - RabbitMQ fermé
+2026-09-05 14:30:15,653 - INFO - Arrêt en cours
+2026-09-05 14:30:15,653 - INFO - RabbitMQ fermé
+2026-09-05 14:30:22,653 - INFO - Arrêt en cours
+2026-09-05 14:30:22,653 - INFO - RabbitMQ fermé
+2026-09-05 14:30:29,654 - INFO - Arrêt en cours
+2026-09-05 14:30:29,654 - INFO - RabbitMQ fermé
+2026-09-05 14:30:56,568 - INFO - Arrêt en cours
+2026-09-05 14:30:56,568 - INFO - RabbitMQ fermé
+2026-09-05 14:31:03,569 - INFO - Arrêt en cours
+2026-09-05 14:31:03,569 - INFO - RabbitMQ fermé
+2026-09-05 14:31:10,569 - INFO - Arrêt en cours
+2026-09-05 14:31:10,569 - INFO - RabbitMQ fermé
+2026-09-05 14:33:49,955 - INFO - api alumer trace_id=f7a0bd0e-ab61-4a6f-97d5-0550e468f3c4 requette_id=9481a383-09ad-4a1d-9783-064497a09ce6 users_id=42a1c66a-41db-4c48-a35e-292ca5a24a57 service=gui
+2026-09-05 14:34:05,229 - INFO - Arrêt en cours
+2026-09-05 14:34:05,229 - INFO - RabbitMQ fermé
+2026-09-05 14:34:12,230 - INFO - Arrêt en cours
+2026-09-05 14:34:12,230 - INFO - RabbitMQ fermé
+2026-09-05 14:34:19,230 - INFO - Arrêt en cours
+2026-09-05 14:34:19,230 - INFO - RabbitMQ fermé
+2026-09-05 14:36:35,031 - INFO - Arrêt en cours
+2026-09-05 14:36:35,031 - INFO - RabbitMQ fermé
+2026-09-05 14:41:44,463 - INFO - Redis fermé
+2026-09-05 14:41:44,463 - ERROR - Erreur OpenTelemetrycannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+Traceback (most recent call last):
+  File "/app/service/shutdown_load.py", line 25, in shutdowns
+    from api.api import stopopentelemetry
+ImportError: cannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+2026-09-05 14:41:44,467 - INFO - SQLite fermée
+2026-09-05 14:41:44,468 - INFO - ✅ SHUTDOWN : terminé
+2026-09-05 14:45:57,058 - INFO - Redis fermé
+2026-09-05 14:45:57,058 - ERROR - Erreur OpenTelemetrycannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+Traceback (most recent call last):
+  File "/app/service/shutdown_load.py", line 25, in shutdowns
+    from api.api import stopopentelemetry
+ImportError: cannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+2026-09-05 14:45:57,063 - INFO - SQLite fermée
+2026-09-05 14:45:57,063 - INFO - ✅ SHUTDOWN : terminé
+2026-09-05 14:50:08,928 - INFO - Redis fermé
+2026-09-05 14:50:08,929 - ERROR - Erreur OpenTelemetrycannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+Traceback (most recent call last):
+  File "/app/service/shutdown_load.py", line 26, in shutdowns
+    from api.api import stopopentelemetry
+ImportError: cannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+2026-09-05 14:50:08,929 - INFO - SQLite fermée
+2026-09-05 14:50:08,929 - INFO - ✅ SHUTDOWN : terminé
+2026-09-05 15:23:47,799 - INFO - Redis fermé
+2026-09-05 15:23:47,799 - ERROR - Erreur OpenTelemetrycannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+Traceback (most recent call last):
+  File "/app/service/shutdown_load.py", line 26, in shutdowns
+    from api.api import stopopentelemetry
+ImportError: cannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+2026-09-05 15:23:47,800 - INFO - SQLite fermée
+2026-09-05 15:23:47,800 - INFO - ✅ SHUTDOWN : terminé
+2026-09-05 15:28:25,631 - INFO - Redis fermé
+2026-09-05 15:30:45,431 - INFO - Redis fermé
+2026-09-05 15:30:45,432 - ERROR - Erreur OpenTelemetrycannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+Traceback (most recent call last):
+  File "/app/service/shutdown_load.py", line 26, in shutdowns
+    from api.api import stopopentelemetry
+ImportError: cannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+2026-09-05 15:30:45,433 - INFO - SQLite fermée
+2026-09-05 15:30:45,433 - INFO - ✅ SHUTDOWN : terminé
+2026-09-05 15:45:19,857 - INFO - Redis fermé
+2026-09-05 15:45:19,857 - ERROR - Erreur OpenTelemetrycannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+Traceback (most recent call last):
+  File "/app/service/shutdown_load.py", line 28, in shutdowns
+    from api.api import stopopentelemetry
+ImportError: cannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+2026-09-05 15:45:19,858 - INFO - SQLite fermée
+2026-09-05 15:45:19,858 - INFO - ✅ SHUTDOWN : terminé
+2026-09-05 21:04:09,394 - INFO - Redis fermé
+2026-09-05 21:04:09,394 - ERROR - Erreur OpenTelemetrycannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+Traceback (most recent call last):
+  File "/app/service/shutdown_load.py", line 29, in shutdowns
+    from api.api import stopopentelemetry
+ImportError: cannot import name 'stopopentelemetry' from partially initialized module 'api.api' (most likely due to a circular import) (/app/api/api.py)
+2026-09-05 21:04:09,395 - INFO - SQLite fermée
+2026-09-05 21:04:09,395 - INFO - ✅ SHUTDOWN : terminé
+2026-09-05 21:30:49,181 - INFO - Redis fermé
+2026-09-05 21:30:49,289 - INFO - OpenTelemetry fermé
+2026-09-05 21:30:49,290 - INFO - SQLite fermée
+2026-09-05 21:30:49,290 - INFO - ✅ SHUTDOWN : terminé
+2026-09-05 21:31:57,264 - INFO - Redis fermé
+2026-09-05 21:31:57,373 - INFO - OpenTelemetry fermé
+2026-09-05 21:31:57,373 - INFO - SQLite fermée
+2026-09-05 21:31:57,373 - INFO - ✅ SHUTDOWN : terminé
+2026-09-05 21:33:41,321 - INFO - Redis fermé
+2026-09-05 21:33:41,463 - INFO - OpenTelemetry fermé
+2026-09-05 21:33:41,463 - INFO - SQLite fermée
+2026-09-05 21:33:41,463 - INFO - ✅ SHUTDOWN : terminé
+2026-09-05 21:35:46,908 - INFO - Arrêt en cours
+2026-09-05 21:35:46,908 - INFO - RabbitMQ fermé
+2026-09-05 21:50:31,109 - INFO - Arrêt en cours
+2026-09-05 21:50:31,109 - INFO - RabbitMQ fermé
+2026-09-05 21:53:11,258 - INFO - Arrêt en cours
+2026-09-05 21:53:11,258 - INFO - RabbitMQ fermé
+2026-09-05 21:54:10,281 - INFO - Arrêt en cours
+2026-09-05 21:54:10,281 - INFO - RabbitMQ fermé
+2026-09-05 21:56:06,980 - INFO - Arrêt en cours
+2026-09-05 21:56:06,981 - INFO - RabbitMQ fermé
+2026-09-06 08:16:04,057 - INFO - Arrêt en cours
+2026-09-06 08:16:04,057 - INFO - RabbitMQ fermé
+2026-09-06 08:16:04,057 - INFO - Redis fermé
+2026-09-06 08:16:04,293 - INFO - OpenTelemetry fermé
+2026-09-06 08:16:04,294 - INFO - SQLite fermée
+2026-09-06 08:16:04,294 - INFO - ✅ SHUTDOWN : terminé
+2026-09-06 08:31:09,634 - INFO - Arrêt en cours
+2026-09-06 08:31:09,635 - INFO - RabbitMQ fermé
+2026-09-06 08:31:09,635 - INFO - Redis fermé
+2026-09-06 08:31:09,635 - INFO - OpenTelemetry fermé
+2026-09-06 08:31:09,635 - INFO - SQLite ferm ée
+2026-09-06 08:31:09,636 - INFO - SHUTDOWN : terminé
+2026-09-06 09:06:54,665 - INFO - Arrêt en cours
+2026-09-06 09:06:54,666 - INFO - RabbitMQ fermé
+2026-09-06 09:06:54,666 - INFO - Redis fermé
+2026-09-06 09:06:54,666 - INFO - OpenTelemetry fermé
+2026-09-06 09:06:54,666 - INFO - SQLite ferm ée
+2026-09-06 09:06:54,667 - INFO - SHUTDOWN : terminé
+2026-09-06 09:08:31,905 - INFO - Arrêt en cours
+2026-09-06 09:08:31,905 - INFO - RabbitMQ fermé
+2026-09-06 09:08:31,905 - INFO - Redis fermé
+2026-09-06 09:08:31,906 - INFO - OpenTelemetry fermé
+2026-09-06 09:08:31,906 - INFO - SQLite ferm ée
+2026-09-06 09:08:31,906 - INFO - SHUTDOWN : terminé
+2026-09-06 10:53:25,782 - INFO - Arrêt en cours
+2026-09-06 10:53:25,782 - INFO - RabbitMQ fermé
+2026-09-06 10:53:25,783 - INFO - Redis fermé
+2026-09-06 10:53:25,784 - INFO - OpenTelemetry fermé
+2026-09-06 10:53:25,784 - INFO - SQLite ferm ée
+2026-09-06 10:53:25,784 - INFO - SHUTDOWN : terminé
+2026-09-06 11:16:46,789 - INFO - Arrêt en cours
+2026-09-06 11:16:46,789 - INFO - RabbitMQ fermé
+2026-09-06 11:16:46,789 - INFO - Redis fermé
+2026-09-06 11:16:46,790 - INFO - OpenTelemetry fermé
+2026-09-06 11:16:46,790 - INFO - SQLite ferm ée
+2026-09-06 11:16:46,790 - INFO - SHUTDOWN : terminé
+2026-09-06 11:21:16,804 - INFO - Arrêt en cours
+2026-09-06 11:21:16,805 - INFO - RabbitMQ fermé
+2026-09-06 11:21:16,805 - INFO - Redis fermé
+2026-09-06 11:21:16,806 - INFO - OpenTelemetry fermé
+2026-09-06 11:21:16,807 - INFO - SQLite ferm ée
+2026-09-06 11:21:16,807 - INFO - SHUTDOWN : terminé
+2026-09-06 11:32:59,185 - INFO - Arrêt en cours
+2026-09-06 11:32:59,185 - INFO - RabbitMQ fermé
+2026-09-06 11:32:59,186 - INFO - Redis fermé
+2026-09-06 11:32:59,187 - INFO - OpenTelemetry fermé
+2026-09-06 11:32:59,188 - INFO - SQLite ferm ée
+2026-09-06 11:32:59,188 - INFO - SHUTDOWN : terminé
+2026-09-06 11:48:47,890 - INFO - Arrêt en cours
+2026-09-06 11:48:47,890 - INFO - RabbitMQ fermé
+2026-09-06 11:48:47,890 - INFO - Redis fermé
+2026-09-06 11:48:47,890 - INFO - OpenTelemetry fermé
+2026-09-06 11:48:47,890 - INFO - SQLite ferm ée
+2026-09-06 11:48:47,890 - INFO - SHUTDOWN : terminé
+2026-09-06 15:26:36,904 - INFO - Arrêt en cours
+2026-09-06 15:26:36,904 - INFO - RabbitMQ fermé
+2026-09-06 15:26:36,908 - INFO - Redis fermé
+2026-09-06 15:26:36,909 - INFO - OpenTelemetry fermé
+2026-09-06 15:26:36,910 - INFO - SQLite ferm ée
+2026-09-06 15:26:36,910 - INFO - SHUTDOWN : terminé
+2026-09-06 15:37:37,742 - INFO - Arrêt en cours
+2026-09-06 15:37:38,637 - INFO - RabbitMQ fermé
+2026-09-06 15:37:38,638 - INFO - Redis fermé
+2026-09-06 15:37:38,639 - INFO - OpenTelemetry fermé
+2026-09-06 15:37:38,639 - INFO - SQLite ferm ée
+2026-09-06 15:37:38,639 - INFO - SHUTDOWN : terminé
+2026-09-06 15:56:19,788 - INFO - api alumer trace_id=d35f3f15-0426-413a-bb58-ac1f54c8169b requette_id=fec83679-25af-43d4-81d4-581d528c3f7b users_id=626acda4-4481-4ba1-aa92-b02470f3ad93 service=gui
+2026-09-06 15:56:52,360 - INFO - Arrêt en cours
+2026-09-06 15:56:53,140 - INFO - RabbitMQ fermé
+2026-09-06 15:56:53,143 - INFO - Redis fermé
+2026-09-06 15:56:53,143 - INFO - OpenTelemetry fermé
+2026-09-06 15:56:53,144 - INFO - SQLite ferm ée
+2026-09-06 15:56:53,144 - INFO - SHUTDOWN : terminé
+2026-09-06 15:59:13,524 - INFO - Arrêt en cours
+2026-09-06 15:59:13,859 - INFO - RabbitMQ fermé
+2026-09-06 15:59:13,860 - INFO - Redis fermé
+2026-09-06 15:59:13,861 - INFO - OpenTelemetry fermé
+2026-09-06 15:59:13,861 - INFO - SQLite ferm ée
+2026-09-06 15:59:13,861 - INFO - SHUTDOWN : terminé
+2026-09-06 15:59:52,357 - INFO - Arrêt en cours
+2026-09-06 15:59:53,284 - INFO - RabbitMQ fermé
+2026-09-06 15:59:53,285 - INFO - Redis fermé
+2026-09-06 15:59:53,286 - INFO - OpenTelemetry fermé
+2026-09-06 15:59:53,286 - INFO - SQLite ferm ée
+2026-09-06 15:59:53,286 - INFO - SHUTDOWN : terminé
+2026-09-06 18:17:44,741 - INFO - Arrêt en cours
+2026-09-06 18:17:44,741 - INFO - RabbitMQ fermé
+2026-09-09 20:32:14,538 - INFO - Arrêt en cours
+2026-09-09 20:32:15,496 - INFO - RabbitMQ fermé
+2026-09-09 20:32:15,496 - INFO - Redis fermé
+2026-09-09 20:32:15,496 - INFO - SQLite fermée
+2026-09-09 20:32:15,499 - INFO - OpenTelemetry fermé
+2026-09-09 20:32:15,499 - INFO - SHUTDOWN : terminé
+2026-09-10 05:21:47,858 - INFO - Arrêt en cours
+2026-09-10 05:21:48,141 - INFO - RabbitMQ fermé
+2026-09-10 05:21:48,147 - INFO - Redis fermé
+2026-09-10 05:21:48,147 - INFO - SQLite fermée
+2026-09-10 05:21:48,148 - ERROR - Erreur OpenTelemetryname 'fluch_ok' is not defined
+Traceback (most recent call last):
+  File "/app/service/shutdown_load.py", line 36, in shutdowns
+    stopopentelemetry(app)
+    ~~~~~~~~~~~~~~~~~^^^^^
+  File "/app/service/telemetry.py", line 23, in stopopentelemetry
+    if fluch_ok:
+       ^^^^^^^^
+NameError: name 'fluch_ok' is not defined
+2026-09-10 05:21:48,153 - INFO - SHUTDOWN : terminé
+2026-09-10 17:39:37,355 - INFO - Arrêt en cours
+2026-09-10 17:39:38,270 - INFO - RabbitMQ fermé
+2026-09-10 17:39:38,271 - INFO - Redis fermé
+2026-09-10 17:39:38,276 - INFO - SQLite fermée
+2026-09-10 17:39:38,277 - INFO - OpenTelemetry fermé
+2026-09-10 17:39:38,277 - INFO - SHUTDOWN : terminé
+2026-09-10 17:59:26,182 - INFO - Arrêt en cours
+2026-09-10 17:59:27,031 - INFO - RabbitMQ fermé
+2026-09-10 17:59:27,031 - INFO - Redis fermé
+2026-09-10 17:59:27,031 - INFO - SQLite fermée
+2026-09-10 17:59:27,033 - INFO - OpenTelemetry fermé
+2026-09-10 17:59:27,033 - INFO - SHUTDOWN : terminé
+2026-09-15 17:36:49,591 - INFO - api alumer trace_id=bd102ea2-0082-4789-a794-aa0de9a1a0dc requette_id=8b3eefa3-9433-4c0c-baae-ef43263b45e1 users_id=0dd39a80-bcc1-4bf4-ac5e-968fe0e0d368 service=gui
+2026-09-15 17:49:09,420 - INFO - Arrêt en cours
+2026-09-15 17:49:09,918 - INFO - RabbitMQ fermé
+2026-09-15 17:49:09,919 - INFO - Redis fermé
+2026-09-15 17:49:09,923 - INFO - SQLite fermée
+2026-09-15 17:49:09,926 - INFO - OpenTelemetry fermé
+2026-09-15 17:49:09,927 - INFO - SHUTDOWN : terminé
+2026-09-15 17:51:43,917 - INFO - Arrêt en cours
+2026-09-15 17:51:44,232 - INFO - RabbitMQ fermé
+2026-09-15 17:51:44,232 - INFO - Redis fermé
+2026-09-15 17:51:44,232 - INFO - SQLite fermée
+2026-09-15 17:51:44,238 - INFO - OpenTelemetry fermé
+2026-09-15 17:51:44,238 - INFO - SHUTDOWN : terminé
+2026-09-15 17:52:31,746 - ERROR - base de donnee introuvabletrace_id=730adb92-b9e4-4a8a-8814-8d6d475d9461 requette_id=c5eb1c22-357d-4bf8-9a4d-c0995f0ebafa users_id=ac74a178-2fc0-446e-8fe2-0e0f86c45875 service=base de donnee
+2026-09-15 17:54:33,420 - INFO - Arrêt en cours
+2026-09-15 17:54:33,935 - INFO - RabbitMQ fermé
+2026-09-15 17:54:33,935 - INFO - Redis fermé
+2026-09-15 17:54:33,935 - INFO - SQLite fermée
+2026-09-15 17:54:33,936 - INFO - OpenTelemetry fermé
+2026-09-15 17:54:33,936 - INFO - SHUTDOWN : terminé
+2026-09-15 17:55:14,022 - INFO - Arrêt en cours
+2026-09-15 17:55:14,057 - INFO - RabbitMQ fermé
+2026-09-15 17:55:14,057 - INFO - Redis fermé
+2026-09-15 17:55:14,058 - INFO - SQLite fermée
+2026-09-15 17:55:14,059 - INFO - OpenTelemetry fermé
+2026-09-15 17:55:14,059 - INFO - SHUTDOWN : terminé
+2026-09-15 17:56:14,103 - INFO - Arrêt en cours
+2026-09-15 17:56:14,176 - INFO - RabbitMQ fermé
+2026-09-15 17:56:14,176 - INFO - Redis fermé
+2026-09-15 17:56:14,177 - INFO - SQLite fermée
+2026-09-15 17:56:14,182 - INFO - OpenTelemetry fermé
+2026-09-15 17:56:14,182 - INFO - SHUTDOWN : terminé
+2026-09-15 19:41:53,524 - INFO - Arrêt en cours
+2026-09-15 19:41:54,326 - INFO - RabbitMQ fermé
+2026-09-15 19:41:54,326 - INFO - Redis fermé
+2026-09-15 19:41:54,327 - INFO - SQLite fermée
+2026-09-15 19:41:54,328 - INFO - OpenTelemetry fermé
+2026-09-15 19:41:54,328 - INFO - SHUTDOWN : terminé

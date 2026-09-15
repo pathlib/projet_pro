@@ -52,3 +52,12 @@ def deletion(id_donnee):
     with db_lock:
         curs.execute("DELETE FROM donnees WHERE id = ?", (id_donnee,))
         conn.commit()
+
+
+def stopdb():
+    with db_lock:
+        try:
+            curs.close()
+            conn.close()
+        except Exception as e:
+            print(f"❌ Erreur fermeture SQLite : {e}", flush=True)

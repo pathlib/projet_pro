@@ -1,13 +1,21 @@
 local.file_match "api"{
-    path_targets =[{ __path__ ="/app/utils/api.log"
+    path_targets =[{ __path__ ="/logs/api.log",
     job ="api-log"}]
     sync_period  = "5s"}
 
+local.file_match "audit"{
+    path_targets =[{ __path__ ="/logs/audit.log",
+    job ="audit-log"}]
+    sync_period  = "5s"}
 
-loki.source.file "22"{
+
+loki.source.file "api"{
     targets = local.file_match.api.targets
     forward_to = [loki.write.local.receiver]}
 
+loki.source.file "audit"{
+    targets = local.file_match.audit.targets
+    forward_to = [loki.write.local.receiver]}
 
 
 loki.write "local" {
