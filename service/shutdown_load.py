@@ -3,11 +3,16 @@ from base_de_donnees.base_de_donnee import stopdb
 from utils.cache import stopredis
 from utils.loggers import logger
 from service.telemetry import stopopentelemetry
-import time
+from service.logique import stop_application
+import asyncio
 
 
 def shutdowns(app):
-    logger.info("Arrêt en cours")
+    try:
+        stop_application()
+        logger.info("Arrêt en cours")
+    except Exception as e:
+        logger.exception(f"Erreur {e}")
     try:
         arretrabbitmq()
         logger.info("RabbitMQ fermé")

@@ -2,6 +2,7 @@ from sys import audit
 from securite import securites
 from pydantic import BaseModel
 from fastapi import Query, HTTPException, Request
+from typing import Any
 from utils.loggers import logger, audit
 from utils.gui import guis, gui2
 from typing import Any, Dict
@@ -9,8 +10,8 @@ from dotenv import load_dotenv
 from utils.cache import get_cache, set_cache, stopredis
 from tenacity import retry, stop_after_attempt, wait_exponential
 from service.broker import message, arretrabbitmq, start_consumer
+import threading
 import pybreaker
-from contextlib import asynccontextmanager
 from opentelemetry import trace
 import uuid
 import signal
@@ -33,6 +34,7 @@ class Donnee(BaseModel):
     id: int
 
 
+shutting_down = threading.Event()
 tracer = trace.get_tracer(__name__)
 # -------------
 # log
@@ -74,6 +76,8 @@ start_consumer()
 
 # Affichage de la page d'accueil
 def home() -> Any:
+    if shutting_down.is_set():
+        return "shutdown"
     trace_id = str(uuid.uuid4())
     requette_id = str(uuid.uuid4())
     logs = (
@@ -98,6 +102,8 @@ def home() -> Any:
 
 
 def home2():
+    if shutting_down.is_set():
+        return "shutdown"
     trace_id = str(uuid.uuid4())
     requette_id = str(uuid.uuid4())
     logs = f"trace_id={trace_id} requette_id={requette_id} users_id={users_id} service=gui_V2"
@@ -119,6 +125,8 @@ def home2():
 
 # Recherche sécurisée
 def recherche_donnee(item: Any) -> Dict[str, Any]:
+    if shutting_down.is_set():
+        return "shutdown"
     try:
         with tracer.start_as_current_span("db.recherche") as db_span:
             data = breaker.call(selection)
@@ -170,6 +178,8 @@ def recherche_donnee(item: Any) -> Dict[str, Any]:
 def get_donnee(
     limit: int = Query(10, ge=1, le=100), offset: int = Query(0, ge=0)
 ) -> Dict[str, Any]:
+    if shutting_down.is_set():
+        return "shutdown"
     try:
         trace_id = str(uuid.uuid4())
         with tracer.start_as_current_span("db.get_donnee") as db_span:
@@ -202,6 +212,9 @@ def get_donnee(
 # Permet de créer les données de façon sécurisée
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def create_donnee(item: str):
+    if shutting_down.is_set():
+        return "shutdown"
+
     trace_id = str(uuid.uuid4())
     requette_id = str(uuid.uuid4())
     logs = f"trace_id={trace_id} requette_id={requette_id} users_id={users_id} service= create donnee"
@@ -220,7 +233,6 @@ def create_donnee(item: str):
         cache = get_cache(item)
         if cache:
             return cache
-
         data = breaker.call(selection)
         for d in data:
             if d["donnee"] == item:
@@ -238,8 +250,11 @@ def create_donnee(item: str):
             # erreur
             logger.info(f"un items a ete creer {logs}")
         with tracer.start_as_current_span("message rabitmq") as db_span:
-            c = "probleme de cache"
-            set_cache(item, c)
+            try:
+                c = "probleme de cache"
+                set_cache(item, c)
+            except Exception as e:
+                print(e)
 
             message(c)
             audit.info(f"Donnée enregistrée {logs}")
@@ -274,6 +289,8 @@ def create_donnee(item: str):
 # Permet la mise à jour sécurisée des données
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def update_donnee(item_id: int, donnee_text: str) -> Dict[str, str]:
+    if shutting_down.is_set():
+        return "shutdown"
     trace_id = str(uuid.uuid4())
     requette_id = str(uuid.uuid4())
     logs = f"trace_id={trace_id} requette_id={requette_id} users_id={users_id} service= update"
@@ -338,6 +355,8 @@ def update_donnee(item_id: int, donnee_text: str) -> Dict[str, str]:
 # Supprime proprement et gère l'absence de l'élément
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def delete_donnee(item: int) -> Dict[str, Any]:
+    if shutting_down.is_set():
+        return "shutdown"
     trace_id = str(uuid.uuid4())
     requette_id = str(uuid.uuid4())
     logs = f"trace_id={trace_id} requette_id={requette_id} users_id={users_id} service=delete"
@@ -387,11 +406,15 @@ def delete_donnee(item: int) -> Dict[str, Any]:
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def ping():
+    if shutting_down.is_set():
+        return "shutdown"
     return {"message": "Ping reussie"}
 
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def ready():
+    if shutting_down.is_set():
+        return "shutdown"
     trace_id = str(uuid.uuid4())
     requette_id = str(uuid.uuid4())
     logs = f"trace_id={trace_id} requette_id={requette_id} users_id={users_id} service=base de donnee"
@@ -417,6 +440,8 @@ def ready():
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def telemetry():
+    if shutting_down.is_set():
+        return "shutdown"
     tracer = trace.get_tracer("test")
 
     with tracer.start_as_current_span("mon-test-jaeger") as span:
@@ -424,3 +449,7 @@ def telemetry():
         span.set_attribute("test.number", 123)
 
     return {"status": "ok"}
+
+
+def stop_application():
+    shutting_down.set()

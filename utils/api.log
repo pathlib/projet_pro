@@ -480,3 +480,114 @@ NameError: name 'fluch_ok' is not defined
 2026-09-15 19:41:54,327 - INFO - SQLite fermée
 2026-09-15 19:41:54,328 - INFO - OpenTelemetry fermé
 2026-09-15 19:41:54,328 - INFO - SHUTDOWN : terminé
+2026-09-15 20:44:37,531 - INFO - Arrêt en cours
+2026-09-15 20:44:38,312 - INFO - RabbitMQ fermé
+2026-09-15 20:44:38,312 - INFO - Redis fermé
+2026-09-15 20:44:38,313 - INFO - SQLite fermée
+2026-09-15 20:44:38,314 - INFO - OpenTelemetry fermé
+2026-09-15 20:44:38,314 - INFO - SHUTDOWN : terminé
+2026-09-18 18:35:31,815 - INFO - Arrêt en cours
+2026-09-18 18:35:32,387 - INFO - RabbitMQ fermé
+2026-09-18 18:35:32,387 - INFO - Redis fermé
+2026-09-18 18:35:32,387 - INFO - SQLite fermée
+2026-09-18 18:35:32,393 - INFO - OpenTelemetry fermé
+2026-09-18 18:35:32,394 - INFO - SHUTDOWN : terminé
+2026-09-20 14:37:47,997 - INFO - Arrêt en cours
+2026-09-20 14:37:48,695 - INFO - RabbitMQ fermé
+2026-09-20 14:37:48,695 - INFO - Redis fermé
+2026-09-20 14:37:48,700 - INFO - SQLite fermée
+2026-09-20 14:37:48,700 - INFO - OpenTelemetry fermé
+2026-09-20 14:37:48,700 - INFO - SHUTDOWN : terminé
+2026-09-20 14:47:48,804 - ERROR - Erreur name 'shutting_down' is not defined
+Traceback (most recent call last):
+  File "/app/service/shutdown_load.py", line 12, in shutdowns
+    stop_application()
+    ~~~~~~~~~~~~~~~~^^
+  File "/app/service/logique.py", line 452, in stop_application
+    shutting_down.set()
+    ^^^^^^^^^^^^^
+NameError: name 'shutting_down' is not defined
+2026-09-20 14:47:49,194 - INFO - RabbitMQ fermé
+2026-09-20 14:47:49,196 - INFO - Redis fermé
+2026-09-20 14:47:49,197 - INFO - SQLite fermée
+2026-09-20 14:47:49,199 - INFO - OpenTelemetry fermé
+2026-09-20 14:47:49,199 - INFO - SHUTDOWN : terminé
+2026-09-20 14:55:02,577 - INFO - api alumer trace_id=dacac300-8d46-4ef5-bb19-dd3536e5bfd2 requette_id=210551a4-40e4-48e9-915b-65440ef3d197 users_id=dca2e7c9-89b4-4833-b6e9-628839b3cd9e service=gui
+2026-09-20 14:55:02,577 - ERROR - Erreur lors de l'affichage GUI-name 'route' is not defined-trace_id=dacac300-8d46-4ef5-bb19-dd3536e5bfd2 requette_id=210551a4-40e4-48e9-915b-65440ef3d197 users_id=dca2e7c9-89b4-4833-b6e9-628839b3cd9e service=gui
+2026-09-20 14:57:44,928 - INFO - Arrêt en cours
+2026-09-20 14:57:45,406 - INFO - RabbitMQ fermé
+2026-09-20 14:57:45,406 - INFO - Redis fermé
+2026-09-20 14:57:45,407 - INFO - SQLite fermée
+2026-09-20 14:57:45,407 - INFO - OpenTelemetry fermé
+2026-09-20 14:57:45,408 - INFO - SHUTDOWN : terminé
+2026-09-20 14:58:02,806 - INFO - api alumer trace_id=356289ad-8d17-45c8-9b32-443e18021a0e requette_id=3f3feeb4-71e2-453a-ac2e-6fa48b6f25e3 users_id=c9f00f9a-e3e0-4dbd-9f00-52b43d1a01b6 service=gui
+2026-09-20 14:58:34,307 - INFO - Arrêt en cours
+2026-09-20 14:58:34,705 - INFO - RabbitMQ fermé
+2026-09-20 14:58:34,706 - INFO - Redis fermé
+2026-09-20 14:58:34,706 - INFO - SQLite fermée
+2026-09-20 14:58:34,707 - INFO - OpenTelemetry fermé
+2026-09-20 14:58:34,708 - INFO - SHUTDOWN : terminé
+2026-09-20 14:58:56,863 - INFO - api alumer trace_id=44845c84-d9b3-4556-8e9a-60506cc7362d requette_id=2d5b71cb-3d72-4720-9764-29ecf667fc8f users_id=6a559e00-84a1-4591-95a9-85de09807e77 service=gui
+2026-09-20 14:59:12,652 - INFO - Arrêt en cours
+2026-09-20 14:59:13,006 - INFO - RabbitMQ fermé
+2026-09-20 14:59:13,006 - INFO - Redis fermé
+2026-09-20 14:59:13,006 - INFO - SQLite fermée
+2026-09-20 14:59:13,009 - INFO - OpenTelemetry fermé
+2026-09-20 14:59:13,009 - INFO - SHUTDOWN : terminé
+2026-09-20 14:59:19,831 - INFO - api alumer trace_id=c9a56d61-3f22-4420-9f1a-3e61ed2117ef requette_id=a95d41f3-e1ee-481c-8a67-cbe0c5e4c200 users_id=7e84f3ca-a35f-4725-8b01-09dae28a8245 service=gui
+2026-09-20 15:02:21,777 - INFO - Arrêt en cours
+2026-09-20 15:02:21,777 - INFO - RabbitMQ fermé
+2026-09-20 15:02:21,778 - INFO - Redis fermé
+2026-09-20 15:02:21,778 - INFO - SQLite fermée
+2026-09-20 15:02:21,791 - INFO - OpenTelemetry fermé
+2026-09-20 15:02:21,792 - INFO - SHUTDOWN : terminé
+2026-09-20 19:05:12,864 - INFO - Arrêt en cours
+2026-09-20 19:05:12,864 - INFO - RabbitMQ fermé
+2026-09-20 19:05:12,865 - INFO - Redis fermé
+2026-09-20 19:05:12,865 - INFO - SQLite fermée
+2026-09-20 19:05:12,868 - INFO - OpenTelemetry fermé
+2026-09-20 19:05:12,868 - INFO - SHUTDOWN : terminé
+2026-09-20 19:06:18,259 - INFO - Arrêt en cours
+2026-09-20 19:06:18,259 - INFO - RabbitMQ fermé
+2026-09-20 19:06:18,259 - INFO - Redis fermé
+2026-09-20 19:06:18,259 - INFO - SQLite fermée
+2026-09-20 19:06:18,261 - INFO - OpenTelemetry fermé
+2026-09-20 19:06:18,261 - INFO - SHUTDOWN : terminé
+2026-09-20 19:06:38,171 - INFO - Arrêt en cours
+2026-09-20 19:06:38,172 - INFO - RabbitMQ fermé
+2026-09-20 19:06:38,172 - INFO - Redis fermé
+2026-09-20 19:06:38,172 - INFO - SQLite fermée
+2026-09-20 19:06:38,174 - INFO - OpenTelemetry fermé
+2026-09-20 19:06:38,174 - INFO - SHUTDOWN : terminé
+2026-09-20 19:07:16,977 - INFO - api alumer trace_id=8e11ffe1-15be-4296-a387-2e32371b97d0 requette_id=9c909e64-7de8-4bed-9d63-3e700d4ee68a users_id=ff67e864-b4d5-44e0-83c9-aebce7f7ea8c service=gui
+2026-09-20 19:07:30,815 - INFO - api alumer trace_id=e4341a51-34f1-4609-b926-ad1e782bf366 requette_id=480e1d32-913e-49f0-a432-731b1a7ab903 users_id=ff67e864-b4d5-44e0-83c9-aebce7f7ea8c service=gui
+2026-09-20 19:07:31,728 - INFO - api alumer trace_id=8a14fc0b-131b-4c8a-b79b-867439975853 requette_id=50353ff6-2acd-42f1-b5f8-3436a3a4c490 users_id=ff67e864-b4d5-44e0-83c9-aebce7f7ea8c service=gui
+2026-09-20 19:09:04,038 - INFO - api alumer trace_id=308032ac-a5d7-4f1a-be9f-f9da15965c5b requette_id=0d4eb919-e580-4452-95e8-f0b8e3c5b5e3 users_id=ff67e864-b4d5-44e0-83c9-aebce7f7ea8c service=gui
+2026-09-20 19:09:37,339 - INFO - api alumer trace_id=d0c03739-af6c-41a0-ade6-eaac4b457214 requette_id=6d967c4a-ec7c-4830-b593-ef14323eb4e4 users_id=ff67e864-b4d5-44e0-83c9-aebce7f7ea8c service=gui
+2026-09-20 19:10:10,165 - INFO - api alumer trace_id=f91c1c3b-0abb-4ab3-a2ce-401b4d18eb91 requette_id=b0691e6f-064e-4b94-90b8-b8c2727a8619 users_id=ff67e864-b4d5-44e0-83c9-aebce7f7ea8c service=gui
+2026-09-20 19:10:19,046 - INFO - Arrêt en cours
+2026-09-20 19:10:19,046 - INFO - RabbitMQ fermé
+2026-09-20 19:10:19,046 - INFO - Redis fermé
+2026-09-20 19:10:19,046 - INFO - SQLite fermée
+2026-09-20 19:10:19,047 - INFO - OpenTelemetry fermé
+2026-09-20 19:10:19,047 - INFO - SHUTDOWN : terminé
+2026-09-20 19:10:32,819 - INFO - api alumer trace_id=b384af6a-d6fb-40c3-b960-ad2d529cc3f5 requette_id=64bddaeb-6a94-4a09-9a7b-7cf479d8cbc4 users_id=89931bc3-7171-4eba-b127-3b80966a9349 service=gui
+2026-09-20 19:24:19,118 - INFO - API V2 allumer trace_id=9ba9cbdb-c3bb-4a40-a8ec-c72ed6ce3dde requette_id=d95d4b46-86ab-4529-9bff-c87d0671d152 users_id=89931bc3-7171-4eba-b127-3b80966a9349 service=gui_V2
+2026-09-20 19:39:32,962 - INFO - Arrêt en cours
+2026-09-20 19:39:33,733 - INFO - RabbitMQ fermé
+2026-09-20 19:39:33,734 - INFO - Redis fermé
+2026-09-20 19:39:33,734 - INFO - SQLite fermée
+2026-09-20 19:39:33,735 - INFO - OpenTelemetry fermé
+2026-09-20 19:39:33,735 - INFO - SHUTDOWN : terminé
+2026-09-20 19:40:17,263 - INFO - Arrêt en cours
+2026-09-20 19:41:09,428 - INFO - API V2 allumer trace_id=5ed000ec-7924-4cfb-bf26-8853735fe4c5 requette_id=08c5d12d-2546-48a2-9ddb-f0dee88c7ca8 users_id=bd7d7b16-6bfb-4fc1-a11c-578d3bbc2293 service=gui_V2
+2026-09-20 19:41:18,650 - INFO - api alumer trace_id=19cd2d82-e004-4ee5-b331-0eb3569615c9 requette_id=3a41cc53-416d-48a4-b859-2260f02d85af users_id=bd7d7b16-6bfb-4fc1-a11c-578d3bbc2293 service=gui
+2026-09-20 19:41:33,378 - INFO - Arrêt en cours
+2026-09-20 19:44:16,781 - INFO - Arrêt en cours
+2026-09-20 19:44:17,123 - INFO - RabbitMQ fermé
+2026-09-20 19:44:17,124 - INFO - Redis fermé
+2026-09-20 19:44:17,124 - INFO - SQLite fermée
+2026-09-20 19:44:17,126 - INFO - OpenTelemetry fermé
+2026-09-20 19:44:17,126 - INFO - SHUTDOWN : terminé
+2026-09-30 14:37:05,727 - INFO - api alumer trace_id=ea1d6de9-116c-4fa8-848f-bb75207c81a0 requette_id=9b1b578e-a462-4c9e-8354-d2a99e906b56 users_id=b05a8a52-23ce-4573-a9ad-0905f8c08441 service=gui
+2026-09-30 14:37:05,742 - INFO - api alumer trace_id=3f555076-31fb-4fa6-a35d-016a8f8a679b requette_id=274fbb79-67c1-4fb0-ba98-adae22ff651e users_id=b05a8a52-23ce-4573-a9ad-0905f8c08441 service=gui

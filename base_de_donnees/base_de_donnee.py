@@ -2,6 +2,8 @@ import sqlite3
 import threading
 import os
 
+db_shutdown = threading.Event()
+
 # -- chemin absolu pour éviter le problème de fichier "perdu"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "donnees.db")
@@ -27,6 +29,8 @@ db_lock = threading.Lock()
 
 
 def selection():
+    if db_shutdown.is_set():
+        raise RuntimeError("Database is shutting down")
     with db_lock:
         curs.execute("SELECT * FROM donnees")
         rows = curs.fetchall()
@@ -35,12 +39,16 @@ def selection():
 
 
 def creation(donnee_add):
+    if db_shutdown.is_set():
+        raise RuntimeError("Database is shutting down")
     with db_lock:
         curs.execute("INSERT INTO donnees (donnee) VALUES (?)", (donnee_add,))
         conn.commit()
 
 
 def modification(id_donnee, nouvelle_donnee):
+    if db_shutdown.is_set():
+        raise RuntimeError("Database is shutting down")
     with db_lock:
         curs.execute(
             "UPDATE donnees SET donnee = ? WHERE id = ?", (nouvelle_donnee, id_donnee)
@@ -49,15 +57,18 @@ def modification(id_donnee, nouvelle_donnee):
 
 
 def deletion(id_donnee):
+    if db_shutdown.is_set():
+        raise RuntimeError("Database is shutting down")
     with db_lock:
         curs.execute("DELETE FROM donnees WHERE id = ?", (id_donnee,))
         conn.commit()
 
 
 def stopdb():
+    db_shutdown.set()
     with db_lock:
         try:
             curs.close()
             conn.close()
         except Exception as e:
-            print(f"❌ Erreur fermeture SQLite : {e}", flush=True)
+            print(f"Erreur fermeture SQLite : {e}")

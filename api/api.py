@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 from service.telemetry import init_opentelemetry
 from service.shutdown_load import shutdowns
 import threading
+from contextlib import asynccontextmanager
 
 load_dotenv()
 
