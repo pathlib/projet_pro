@@ -1,6 +1,6 @@
 from service.broker import arretrabbitmq
 from base_de_donnees.base_de_donnee import stopdb
-from utils.cache import stopredis
+from service.cache import stopredis
 from utils.loggers import logger
 from service.telemetry import stopopentelemetry
 from service.logique import stop_application

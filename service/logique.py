@@ -7,9 +7,10 @@ from utils.loggers import logger, audit
 from utils.gui import guis, gui2
 from typing import Any, Dict
 from dotenv import load_dotenv
-from utils.cache import get_cache, set_cache, stopredis
+from service.cache import get_cache, set_cache, stopredis
 from tenacity import retry, stop_after_attempt, wait_exponential
 from service.broker import message, arretrabbitmq, start_consumer
+from pika.exceptions import AMQPConnectionError
 import threading
 import pybreaker
 from opentelemetry import trace

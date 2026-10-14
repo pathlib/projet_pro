@@ -4,14 +4,22 @@ from utils.loggers import logger
 from fastapi import HTTPException
 import os
 from dotenv import load_dotenv
+from tenacity import retry, stop_after_attempt, wait_exponential
 
-load_dotenv()
-REDIS_HOST = os.getenv("REDIS_HOST")
-REDIS_PORT = int(os.getenv("REDIS_PORT"))
-print(REDIS_HOST, REDIS_PORT)
 
-client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
+def retrys():
+    load_dotenv()
+    REDIS_HOST = os.getenv("REDIS_HOST")
+    REDIS_PORT = int(os.getenv("REDIS_PORT"))
 
+    client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
+    if client is None:
+        raise ValueError("Redis client ne connexion")
+    return client
+
+
+client = retrys()
 sessions = 0
 MAX = 20
 EXPIRATION = 60
