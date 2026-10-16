@@ -603,3 +603,35 @@ NameError: name 'shutting_down' is not defined
 2026-10-01 16:19:53,824 - INFO - SQLite fermée
 2026-10-01 16:19:53,827 - INFO - OpenTelemetry fermé
 2026-10-01 16:19:53,827 - INFO - SHUTDOWN : terminé
+2026-10-14 19:29:35,474 - INFO - api alumer trace_id=856f04d7-0aa0-44bd-9c58-025c05827162 requette_id=18d55cb6-ad85-4e41-b568-edb8946f1a6e users_id=e09a41eb-af7c-4abd-aa9e-52ac8773e55d service=gui
+2026-10-14 19:30:02,224 - INFO - api alumer trace_id=232721e6-cb4e-41b7-9a32-7fdaac9d61fb requette_id=cf71367f-5240-4a16-b406-83c74a0a6e79 users_id=e09a41eb-af7c-4abd-aa9e-52ac8773e55d service=gui
+2026-10-14 20:00:31,445 - ERROR - Connexion RabbitMQ perdue
+Traceback (most recent call last):
+  File "/app/service/broker.py", line 206, in recois
+    connection.process_data_events(time_limit=1)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pika/adapters/blocking_connection.py", line 900, in process_data_events
+    self._flush_output(timer.is_ready, common_terminator)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pika/adapters/blocking_connection.py", line 551, in _flush_output
+    raise self._closed_result.value.error
+pika.exceptions.ConnectionClosedByBroker: (320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")
+2026-10-14 20:00:31,665 - INFO - Arrêt en cours
+2026-10-14 20:00:31,666 - INFO - RabbitMQ fermé
+2026-10-14 20:00:31,666 - INFO - Redis fermé
+2026-10-14 20:00:31,666 - INFO - SQLite fermée
+2026-10-14 20:00:31,674 - INFO - OpenTelemetry fermé
+2026-10-14 20:00:31,674 - INFO - SHUTDOWN : terminé
+2026-10-16 14:23:03,722 - INFO - api alumer trace_id=f7ae308b-09ae-4966-a97b-5739e0ccfbd8 requette_id=34419d46-9f36-484f-bb15-ac042e537a03 users_id=29be4619-32f8-4e24-a5c5-a4020ec34d0e service=gui
+2026-10-16 16:49:07,075 - INFO - Arrêt en cours
+2026-10-16 16:49:07,691 - INFO - RabbitMQ fermé
+2026-10-16 16:49:07,692 - INFO - Redis fermé
+2026-10-16 16:49:07,692 - INFO - SQLite fermée
+2026-10-16 16:49:07,694 - INFO - OpenTelemetry fermé
+2026-10-16 16:49:07,694 - INFO - SHUTDOWN : terminé
+2026-10-16 16:49:24,795 - INFO - Message envoyé : 1523
+2026-10-16 16:49:24,796 - INFO - Connexion producteur fermée
+2026-10-16 16:49:24,796 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-16 16:49:24,796 - INFO - Thread RabbitMQ démarré
+2026-10-16 16:49:24,810 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-16 16:49:24,810 - INFO - Message reçu : 1523

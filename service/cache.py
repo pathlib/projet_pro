@@ -6,22 +6,28 @@ import os
 from dotenv import load_dotenv
 from tenacity import retry, stop_after_attempt, wait_exponential
 
+load_dotenv()
+
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=10))
 def retrys():
-    load_dotenv()
     REDIS_HOST = os.getenv("REDIS_HOST")
-    REDIS_PORT = int(os.getenv("REDIS_PORT"))
+    REDIS_PORT = os.getenv("REDIS_PORT")
+    if not REDIS_HOST:
+        raise Exception("REDIS_HOST not found")
+    if not REDIS_PORT:
+        raise Exception("REDIS_PORT not found")
 
-    client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
-    if client is None:
-        raise ValueError("Redis client ne connexion")
+    redis_port = int(REDIS_PORT)
+    client = redis.Redis(host=REDIS_HOST, port=redis_port, decode_responses=True)
+    if not client.ping():
+        raise Exception("Erreur de connexion Redis")
     return client
 
 
 client = retrys()
-sessions = 0
-MAX = 20
+
+MAX_REQUESTS = 20
 EXPIRATION = 60
 
 redis_shutdown = threading.Event()
@@ -32,39 +38,55 @@ def get_cache(key):
     if redis_shutdown.is_set():
         return None
     with semaphore:
-        data = client.get(key)
-        return data
+        try:
+            data = client.get(key)
+            return data
+        except redis.RedisError as e:
+            logger.error(f"Erreur Redis rate limit: {e}")
+            return None
 
 
 def set_cache(key, items, ttl=3600):
     if redis_shutdown.is_set():
         return None
     with semaphore:
-        client.set(key, items, ex=ttl)
-        return items
+        try:
+            client.set(key, items, ex=ttl)
+            return items
+        except redis.RedisError as e:
+            logger.error(f"Erreur Redis rate limit: {e}")
+            return None
 
 
-def session(sessions: int):
+def session(session_id: str):
     if redis_shutdown.is_set():
         return None
     with semaphore:
-        count = client.incr(sessions)
-        if count == 1:
-            client.expire(sessions, EXPIRATION)
-            print(sessions)
-        if count > MAX:
-            raise HTTPException(status_code=429, detail={"Trop de requêtes"})
+        try:
+            count = client.incr(session_id)
+            if count == 1:
+                client.expire(session_id, EXPIRATION)
+                print(session_id)
+            if count > MAX_REQUESTS:
+                raise HTTPException(status_code=429, detail="Trop de requêtes")
+        except redis.RedisError as e:
+            logger.error(f"Erreur Redis rate limit: {e}")
+            raise HTTPException(
+                status_code=503,
+                detail="Service temporairement indisponible",
+            )
+        except HTTPException:
+            # On relance l'exception HTTP 429 pour qu'elle soit renvoyée au client FastAPI
+            raise
         return None
 
 
 def stopredis():
-    print("Arret redis en cour ")
+    print("Arrêt Redis en cours...")
     try:
         redis_shutdown.set()
-        for _ in range(20):
-            semaphore.acquire()
         client.close()
         print("redis arreter")
     except Exception as e:
         logger.exception("Erreur fermeture Redis")
-        print(f"Erreur opération Redis impossible après fermeture : {e}", flush=True)
+        print(f"Erreur opération Redis impossible après fermeture : {e}")

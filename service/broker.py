@@ -1,292 +1,223 @@
-import pika
-import threading
 import os
-from utils.loggers import logger
+import threading
 from dotenv import load_dotenv
-from tenacity import (
-    retry,
-    stop_after_attempt,
-    wait_exponential,
-    retry_if_exception_type,
-)
+import pika
+from utils.loggers import logger
 
 load_dotenv()
+
 # Permet de demander l'arrêt du consumer
 shutdown_event = threading.Event()
 
 # Protection du producteur
 rabbit_lock = threading.Lock()
 
+# Protection du démarrage/arrêt du consumer
+consumer_lock = threading.Lock()
+
 # Référence vers le thread du consumer
 consumer_thread = None
 SHUTDOWN_TIMEOUT = 30
+
 RABBITMQ_USER = os.getenv("RABBITMQ_USER")
 RABBITMQ_PASSWORD = os.getenv("RABBITMQ_PASSWORD")
 RABBITMQ_HOST = os.getenv("RABBITMQ_HOST")
-RABBITMQ_PORT = os.getenv("RABBITMQ_PORT")
+RABBITMQ_PORT = os.getenv("RABBITMQ_PORT", "5672")
+
+MAIN_QUEUE = "hello"
+DEAD_EXCHANGE = "dead_letter_exchange"
+DEAD_QUEUE = "dead_routing_key"
+DEAD_ROUTING_KEY = "dead"
 
 
-@retry(
-    retry=retry_if_exception_type(pika.exceptions.AMQPConnectionError),
-    stop=stop_after_attempt(3),
-    wait=wait_exponential(multiplier=1, min=1, max=10),
-    reraise=True,
-)
 def rabbitmq():
-    if not RABBITMQ_USER:
-        raise RuntimeError("RABBITMQ_USER manquant")
+    if not all([RABBITMQ_USER, RABBITMQ_PASSWORD, RABBITMQ_HOST, RABBITMQ_PORT]):
+        raise RuntimeError("Paramètres RabbitMQ manquants dans l'environnement")
 
-    if not RABBITMQ_PASSWORD:
-        raise RuntimeError("RABBITMQ_PASSWORD manquant")
-
-    if not RABBITMQ_HOST:
-        raise RuntimeError("RABBITMQ_HOST manquant")
-
-    if not RABBITMQ_PORT:
-        raise RuntimeError("RABBITMQ_PORT manquant")
     try:
-        RABBITMQ_PORTS = int(RABBITMQ_PORT)
-    except ValueError:
-        raise RuntimeError("RABBITMQ_PORT invalide")
+        port = int(RABBITMQ_PORT)
+    except ValueError as e:
+        raise RuntimeError("RABBITMQ_PORT invalide") from e
 
-    connexion = pika.BlockingConnection(
+    return pika.BlockingConnection(
         pika.ConnectionParameters(
             host=RABBITMQ_HOST,
-            port=RABBITMQ_PORTS,
+            port=port,
             credentials=pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASSWORD),
+            heartbeat=600,
+            blocked_connection_timeout=300,
+            connection_attempts=3,
+            retry_delay=2,
         )
     )
-    return connexion
+
+
+def declare_topology(channel):
+    """Déclare exchange, DLQ et queue principale (identique côté producteur et consumer)."""
+    channel.exchange_declare(
+        exchange=DEAD_EXCHANGE, exchange_type="direct", durable=True
+    )
+    channel.queue_declare(queue=DEAD_QUEUE, durable=True)
+    channel.queue_bind(
+        exchange=DEAD_EXCHANGE, queue=DEAD_QUEUE, routing_key=DEAD_ROUTING_KEY
+    )
+    channel.queue_declare(
+        queue=MAIN_QUEUE,
+        durable=True,
+        arguments={
+            "x-dead-letter-exchange": DEAD_EXCHANGE,
+            "x-dead-letter-routing-key": DEAD_ROUTING_KEY,
+        },
+    )
 
 
 def message(messages):
-    # Ne plus accepter de nouveaux messages pendant le shutdown
     if shutdown_event.is_set():
-        print("Shutdown en cours : message refusé")
+        logger.warning("Shutdown en cours : message refusé")
         return False
 
     connection = None
-
     try:
         with rabbit_lock:
-            # Vérification avant connexion
             if shutdown_event.is_set():
-                print("Shutdown en cours : message refusé")
+                logger.warning("Shutdown en cours : message refusé")
                 return False
 
-            try:
-
-                connection = rabbitmq()
-
-            except pika.exceptions.AMQPConnectionError as e:
-                print("connexion perdue")
-                return False
-
-            # Vérification juste avant l'envoi
-            if shutdown_event.is_set():
-                print("Shutdown : envoi annulé")
-                return False
-
+            connection = rabbitmq()
             channel = connection.channel()
+            declare_topology(channel)
 
-            channel.queue_declare(
-                queue="hello",
-                durable=True,
-                arguments={
-                    "x-dead-letter-exchange": "dead_letter_exchange",
-                    "x-dead-letter-routing-key": "dead",
-                },
-            )
-
+            channel.confirm_delivery()
             channel.basic_publish(
-                exchange="", routing_key="hello", body=messages.encode()
+                exchange="",
+                routing_key=MAIN_QUEUE,
+                body=messages.encode("utf-8"),
+                properties=pika.BasicProperties(delivery_mode=2),
+                mandatory=True,
             )
 
-            print(f"Message envoyé : {messages}")
-
+            logger.info(f"Message envoyé : {messages}")
             return True
 
     except Exception as e:
-        logger.exception(e)
-
-        print(f"Erreur RabbitMQ producteur : {e}")
+        logger.exception(f"Erreur RabbitMQ producteur : {e}")
         return False
 
     finally:
-
-        if connection is not None and not connection.is_closed:
-
+        if connection is not None and connection.is_open:
             try:
                 connection.close()
-                print("Connexion producteur fermée")
-
+                logger.info("Connexion producteur fermée")
             except Exception as e:
-                print(f"Erreur fermeture producteur : {e}")
-                logger.exception(e)
+                logger.exception(f"Erreur fermeture producteur : {e}")
 
 
 def callback(ch, method, properties, body):
+    # En cas d'arrêt : on ne traite pas et on n'acquitte pas.
+    # Le message est automatiquement remis en queue à la fermeture de la connexion
+    # (évite une boucle nack/requeue/redelivery).
     if shutdown_event.is_set():
-        print("Shutdown en cours : message non traité")
-        ch.basic_nack(
-            delivery_tag=method.delivery_tag,
-            requeue=False,
-        )
+        logger.info("Shutdown en cours : message non traité (sera remis en queue)")
         return
 
     try:
-        message_recu = body.decode()
-        print("Message reçu :")
-        print(message_recu)
+        message_recu = body.decode("utf-8")
+        logger.info(f"Message reçu : {message_recu}")
 
-        def traiter_message(message):
-            return message
+        # Traitement du message
+        # ...
 
-        traiter_message(message_recu)
-        # Message traité correctement
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
     except Exception as e:
-
-        print(f"Erreur traitement : {e}")
         logger.exception(f"Erreur traitement RabbitMQ : {e}")
-
-        ch.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
+        try:
+            ch.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
+        except pika.exceptions.AMQPError:
+            logger.exception("Impossible de nack le message (canal fermé ?)")
 
 
 # CONSUMER
-
-
 def recois():
-
-    connection = None
-    channel = None
-
-    try:
-
-        # CONNEXION RABBITMQ
-        with rabbit_lock:
+    while not shutdown_event.is_set():
+        connection = None
+        try:
+            logger.info("Tentative de connexion du consumer RabbitMQ...")
             connection = rabbitmq()
-
             channel = connection.channel()
+            declare_topology(channel)
 
-            # DEAD LETTER QUEUE
-
-            channel.queue_declare(queue="dead_routing_key", durable=True)
-
-            channel.exchange_declare(
-                exchange="dead_letter_exchange", exchange_type="direct", durable=True
-            )
-
-            channel.queue_bind(
-                exchange="dead_letter_exchange",
-                queue="dead_routing_key",
-                routing_key="dead",
-            )
-
-            # QUEUE PRINCIPALE
-
-            channel.queue_declare(
-                queue="hello",
-                durable=True,
-                arguments={
-                    "x-dead-letter-exchange": "dead_letter_exchange",
-                    "x-dead-letter-routing-key": "dead",
-                },
-            )
-
-            # CONSUMER
             channel.basic_qos(prefetch_count=1)
             channel.basic_consume(
-                queue="hello", on_message_callback=callback, auto_ack=False
+                queue=MAIN_QUEUE, on_message_callback=callback, auto_ack=False
             )
 
-            print("Consumer RabbitMQ démarré")
+            logger.info("Consumer RabbitMQ démarré et à l'écoute")
+
             while not shutdown_event.is_set():
                 connection.process_data_events(time_limit=1)
 
-            print("Shutdown RabbitMQ détecté")
+        except (pika.exceptions.AMQPError, OSError) as e:
+            if shutdown_event.is_set():
+                break
+            logger.exception(
+                f"Connexion perdue ou erreur réseau ({e}). Nouvelle tentative dans 5 secondes..."
+            )
+        except Exception as e:
+            if shutdown_event.is_set():
+                break
+            logger.exception(f"Erreur inattendue dans le consumer : {e}")
+        finally:
+            if connection is not None and connection.is_open:
+                try:
+                    connection.close()
+                except Exception:
+                    pass
 
-    except pika.exceptions.AMQPConnectionError as e:
-        if shutdown_event.is_set():
-            print("Connexion fermée pendant le shutdown")
-        else:
-            print("Connexion RabbitMQ perdue")
-            logger.exception("Connexion RabbitMQ perdue")
+        # Attente avant reconnexion si non stoppé
+        shutdown_event.wait(5)
 
-    except Exception as e:
-        print(f"Erreur consumer RabbitMQ : {e}")
-        logger.exception(e)
-
-    finally:
-
-        if connection is not None and not connection.is_closed:
-            try:
-                if channel is not None and channel.is_open:
-                    channel.close()
-                connection.close()
-                print("Connexion consumer RabbitMQ fermée")
-
-            except Exception as e:
-                print(f"Erreur fermeture consumer : {e}")
-                logger.exception(e)
+    logger.info("Boucle du consommateur terminée proprement.")
 
 
 # DÉMARRER LE CONSUMER
-
-
 def start_consumer():
-
     global consumer_thread
-    if consumer_thread is not None and consumer_thread.is_alive():
+    with consumer_lock:
+        if consumer_thread is not None and consumer_thread.is_alive():
+            logger.info("Consumer RabbitMQ déjà démarré")
+            return consumer_thread
 
-        print("Consumer RabbitMQ déjà démarré")
-
+        shutdown_event.clear()
+        consumer_thread = threading.Thread(
+            target=recois, daemon=True, name="RabbitMQ-Consumer"
+        )
+        consumer_thread.start()
+        logger.info("Thread RabbitMQ démarré")
         return consumer_thread
-
-    # Réinitialiser le shutdown
-
-    shutdown_event.clear()
-
-    # Créer le thread
-
-    consumer_thread = threading.Thread(
-        target=recois, daemon=False, name="RabbitMQ-Consumer"
-    )
-
-    # Démarrer
-
-    consumer_thread.start()
-
-    print("Thread RabbitMQ démarré")
-
-    return consumer_thread
 
 
 # ARRÊTER LE CONSUMER
-
-
 def arretrabbitmq():
-
     global consumer_thread
-
-    print("Demande de shutdown RabbitMQ")
-
-    # Signaler au consumer qu'il doit s'arrêter
-
+    logger.info("Demande de shutdown RabbitMQ")
     shutdown_event.set()
 
-    print("Nouveaux messages refusés")
+    with consumer_lock:
+        thread = consumer_thread
 
-    # Attendre la fin du thread
+    if thread is None:
+        logger.info("Aucun consumer RabbitMQ actif")
+        return True
 
-    if consumer_thread is not None:
-        consumer_thread.join(SHUTDOWN_TIMEOUT)
-        if consumer_thread.is_alive():
-            print("ATTENTION : " "le consumer RabbitMQ est encore actif")
-            return
-        else:
-            print("Consumer RabbitMQ arrêté")
-            consumer_thread = None
-    else:
-        print("Aucun consumer RabbitMQ actif")
+    if thread is not threading.current_thread():
+        thread.join(SHUTDOWN_TIMEOUT)
+
+    if thread.is_alive():
+        logger.warning("Le consommateur est encore actif après le timeout")
+        return False
+
+    with consumer_lock:
+        consumer_thread = None
+    logger.info("Consommateur arrêté correctement")
+    return True
