@@ -13,7 +13,7 @@ def retrys():
     if not CELERY_BROKER_URL:
         raise ValueError("CELERY_BROKER_URL not found")
     app = Celery("worker", broker=CELERY_BROKER_URL, backend="rpc://")
-    return celery
+    return app
 
 
 app = retrys()

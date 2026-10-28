@@ -7,7 +7,6 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from fastapi import Request, APIRouter
 import uuid
-import os
 from dotenv import load_dotenv
 from service.telemetry import init_opentelemetry
 from service.shutdown_load import shutdowns
@@ -24,8 +23,7 @@ is_time = threading.Lock()
 async def lifespan(app: FastAPI):
     try:
         yield
-    except Exception as e:
-        logger.exception("Erreur pendant le lifespan")
+    except Exception:
         raise
     finally:
         with is_time:

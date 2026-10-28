@@ -635,3 +635,395 @@ pika.exceptions.ConnectionClosedByBroker: (320, "CONNECTION_FORCED - broker forc
 2026-10-16 16:49:24,796 - INFO - Thread RabbitMQ démarré
 2026-10-16 16:49:24,810 - INFO - Consumer RabbitMQ démarré et à l'écoute
 2026-10-16 16:49:24,810 - INFO - Message reçu : 1523
+2026-10-16 20:25:02,433 - ERROR - Connexion perdue ou erreur réseau ((320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")). Nouvelle tentative dans 5 secondes...
+Traceback (most recent call last):
+  File "/app/service/broker.py", line 158, in recois
+    connection.process_data_events(time_limit=1)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pika/adapters/blocking_connection.py", line 900, in process_data_events
+    self._flush_output(timer.is_ready, common_terminator)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pika/adapters/blocking_connection.py", line 551, in _flush_output
+    raise self._closed_result.value.error
+pika.exceptions.ConnectionClosedByBroker: (320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")
+2026-10-16 20:25:02,525 - INFO - Arrêt en cours
+2026-10-16 20:25:02,525 - INFO - Demande de shutdown RabbitMQ
+2026-10-16 20:25:02,525 - INFO - Boucle du consommateur terminée proprement.
+2026-10-16 20:25:02,525 - INFO - Consommateur arrêté correctement
+2026-10-16 20:25:02,525 - INFO - RabbitMQ fermé
+2026-10-16 20:25:02,526 - INFO - Redis fermé
+2026-10-16 20:25:02,526 - INFO - SQLite fermée
+2026-10-16 20:25:02,535 - INFO - OpenTelemetry fermé
+2026-10-16 20:25:02,535 - INFO - SHUTDOWN : terminé
+2026-10-20 15:26:56,701 - INFO - Message envoyé : 1523
+2026-10-20 15:26:56,702 - INFO - Connexion producteur fermée
+2026-10-20 15:26:56,703 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 15:26:56,703 - INFO - Thread RabbitMQ démarré
+2026-10-20 15:26:56,715 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 15:26:56,716 - INFO - Message reçu : 1523
+2026-10-20 15:27:14,233 - INFO - api alumer trace_id=21acba80-e379-4b62-af4a-b49a8ea1fee1 requette_id=edc5134d-3ed8-4973-b8b5-20d2780959e3 users_id=0029e41a-49c7-4408-aa3a-b631502cf7ab service=gui
+2026-10-20 15:28:11,830 - INFO - un items a ete creer trace_id=80d4bb33-d902-4b0d-9131-e39a9524b454 requette_id=7b7e8a70-4b99-4485-947b-2a7e86504e2a users_id=0029e41a-49c7-4408-aa3a-b631502cf7ab service= create donnee
+2026-10-20 15:28:11,844 - INFO - Message reçu : probleme de cache
+2026-10-20 15:28:11,845 - INFO - Message envoyé : probleme de cache
+2026-10-20 15:28:11,847 - INFO - Connexion producteur fermée
+2026-10-20 15:43:16,246 - INFO - Arrêt en cours
+2026-10-20 15:43:16,247 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 15:43:16,780 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 15:43:16,781 - INFO - Consommateur arrêté correctement
+2026-10-20 15:43:16,781 - INFO - RabbitMQ fermé
+2026-10-20 15:43:16,781 - INFO - Redis fermé
+2026-10-20 15:43:16,786 - INFO - SQLite fermée
+2026-10-20 15:43:16,787 - INFO - OpenTelemetry fermé
+2026-10-20 15:43:16,788 - INFO - SHUTDOWN : terminé
+2026-10-20 15:43:32,084 - INFO - Message envoyé : 1523
+2026-10-20 15:43:32,085 - INFO - Connexion producteur fermée
+2026-10-20 15:43:32,086 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 15:43:32,086 - INFO - Thread RabbitMQ démarré
+2026-10-20 15:43:32,105 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 15:43:32,105 - INFO - Message reçu : 1523
+2026-10-20 15:43:44,721 - INFO - api alumer trace_id=5b502579-ffac-4007-9315-4ec61b5e9e17 requette_id=d20a3b15-b66f-48c4-9a44-448570a08a10 users_id=94f7bfde-0301-4e1c-ba49-e2f3cfc844cf service=gui
+2026-10-20 15:44:25,101 - INFO - un items a ete creer trace_id=4d72ddfa-a0f7-4fd5-accf-fcc5b1ab29e3 requette_id=a36cb53f-b6a7-4183-ab5c-80bf216b47bb users_id=94f7bfde-0301-4e1c-ba49-e2f3cfc844cf service= create donnee
+2026-10-20 15:44:25,116 - INFO - Message reçu : probleme de cache
+2026-10-20 15:44:25,117 - INFO - Message envoyé : probleme de cache
+2026-10-20 15:44:25,120 - INFO - Connexion producteur fermée
+2026-10-20 15:45:10,084 - INFO - Arrêt en cours
+2026-10-20 15:45:10,085 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 15:45:10,165 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 15:45:10,166 - INFO - Consommateur arrêté correctement
+2026-10-20 15:45:10,166 - INFO - RabbitMQ fermé
+2026-10-20 15:45:10,166 - INFO - Redis fermé
+2026-10-20 15:45:10,166 - INFO - SQLite fermée
+2026-10-20 15:45:10,167 - INFO - OpenTelemetry fermé
+2026-10-20 15:45:10,167 - INFO - SHUTDOWN : terminé
+2026-10-20 15:45:27,811 - INFO - Message envoyé : 1523
+2026-10-20 15:45:27,812 - INFO - Connexion producteur fermée
+2026-10-20 15:45:27,812 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 15:45:27,812 - INFO - Thread RabbitMQ démarré
+2026-10-20 15:45:27,837 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 15:45:27,837 - INFO - Message reçu : 1523
+2026-10-20 15:45:45,353 - INFO - api alumer trace_id=1b9313a4-7e03-4886-947c-14f2dbb23785 requette_id=e194e9a8-d183-4ebf-8b58-34fcc5a95194 users_id=3c19fa23-6b68-46a1-9ce1-b9584f130038 service=gui
+2026-10-20 15:46:25,600 - INFO - un items a ete creer trace_id=960b66dd-468a-4cb3-b14b-d034760e25ee requette_id=f9a048ca-ee37-421b-be5b-16e2947b3534 users_id=3c19fa23-6b68-46a1-9ce1-b9584f130038 service= create donnee
+2026-10-20 15:46:25,614 - INFO - Message reçu : probleme de cache
+2026-10-20 15:46:25,614 - INFO - Message envoyé : probleme de cache
+2026-10-20 15:46:25,615 - INFO - Connexion producteur fermée
+2026-10-20 15:46:32,843 - ERROR - Erreur BDD (get_donnee) : tuple index out of range - 10
+2026-10-20 15:46:33,845 - ERROR - Erreur BDD (get_donnee) : tuple index out of range - 10
+2026-10-20 15:46:35,847 - ERROR - Erreur BDD (get_donnee) : tuple index out of range - 10
+2026-10-20 15:46:38,509 - ERROR - Erreur BDD (get_donnee) : tuple index out of range - 10
+2026-10-20 15:46:39,543 - ERROR - erreur de db-10-4f7fceb0-4474-422c-ab7e-3a3fc280ede6
+2026-10-20 15:46:41,545 - ERROR - erreur de db-10-84614cf6-fe51-4dc1-9c07-cc9cde6fb5d6
+2026-10-20 15:47:56,903 - ERROR - erreur de db-10-b9003796-8014-4984-99c9-adf24395b493
+2026-10-20 15:47:57,908 - ERROR - erreur de db-10-e2f30bc0-47d5-4d45-9bb5-7828a206128a
+2026-10-20 15:47:59,912 - ERROR - erreur de db-10-a8ce5408-1ec6-4727-8a5a-14cd2a250c8c
+2026-10-20 15:49:27,756 - ERROR - erreur de db-trace_id=59fd0565-c283-4ab9-8265-637785ffebc1 requette_id=66e311c6-7764-447a-beae-0f41b532e25a users_id=3c19fa23-6b68-46a1-9ce1-b9584f130038 service=delete
+2026-10-20 15:49:28,756 - ERROR - erreur de db-trace_id=522a4f00-769d-4d7b-a4a0-41fd84ed2b09 requette_id=08daf17c-f3ad-4323-9b83-2ff9797cba3a users_id=3c19fa23-6b68-46a1-9ce1-b9584f130038 service=delete
+2026-10-20 15:49:30,757 - ERROR - erreur de db-trace_id=19d6a59c-c62d-4b9d-bcaa-3b957c447bbb requette_id=12a965de-2252-472d-8895-9943fcb15b82 users_id=3c19fa23-6b68-46a1-9ce1-b9584f130038 service=delete
+2026-10-20 15:50:22,115 - INFO - Arrêt en cours
+2026-10-20 15:50:22,115 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 15:50:22,875 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 15:50:22,876 - INFO - Consommateur arrêté correctement
+2026-10-20 15:50:22,876 - INFO - RabbitMQ fermé
+2026-10-20 15:50:22,876 - INFO - Redis fermé
+2026-10-20 15:50:22,877 - INFO - SQLite fermée
+2026-10-20 15:50:22,878 - INFO - OpenTelemetry fermé
+2026-10-20 15:50:22,878 - INFO - SHUTDOWN : terminé
+2026-10-20 15:50:34,967 - INFO - Message envoyé : 1523
+2026-10-20 15:50:34,968 - INFO - Connexion producteur fermée
+2026-10-20 15:50:34,968 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 15:50:34,969 - INFO - Thread RabbitMQ démarré
+2026-10-20 15:50:34,983 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 15:50:34,983 - INFO - Message reçu : 1523
+2026-10-20 15:50:41,604 - INFO - api alumer trace_id=46de85f1-90ab-4cca-8668-c7c88cfbae3a requette_id=ee19d2e7-1afb-4b1f-a67e-4e91382516f4 users_id=3aea69ba-43e0-4ca5-b021-ebda1bb02ba0 service=gui
+2026-10-20 15:51:24,164 - INFO - un items a ete creer trace_id=8fa5c4ec-e227-4db6-97ce-ce9f83657161 requette_id=86c568df-ea05-4f24-9dc4-c142de4f3688 users_id=3aea69ba-43e0-4ca5-b021-ebda1bb02ba0 service= create donnee
+2026-10-20 15:51:24,188 - INFO - Message envoyé : probleme de cache
+2026-10-20 15:51:24,188 - INFO - Message reçu : probleme de cache
+2026-10-20 15:51:24,190 - INFO - Connexion producteur fermée
+2026-10-20 15:51:28,016 - ERROR - Erreur BDD (get_donnee) : tuple index out of range - 10
+2026-10-20 15:51:29,024 - ERROR - Erreur BDD (get_donnee) : tuple index out of range - 10
+2026-10-20 15:51:31,027 - ERROR - Erreur BDD (get_donnee) : tuple index out of range - 10
+2026-10-20 15:51:44,864 - ERROR - Erreur critique lors de la création : tuple index out of range - trace_id=a8c4dabf-485e-46ce-aaa9-eecfad5b0409 requette_id=65c8d940-03c4-465a-aa7b-97f64a6ae813 users_id=3aea69ba-43e0-4ca5-b021-ebda1bb02ba0 service= create donnee
+Traceback (most recent call last):
+  File "/app/service/logique.py", line 237, in create_donnee
+    data = breaker.call(selection)
+  File "/usr/local/lib/python3.13/site-packages/pybreaker/__init__.py", line 251, in call
+    return self.state.call(func, *args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pybreaker/__init__.py", line 725, in call
+    self._handle_error(e)
+    ~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/lib/python3.13/site-packages/pybreaker/__init__.py", line 700, in _handle_error
+    raise exc
+  File "/usr/local/lib/python3.13/site-packages/pybreaker/__init__.py", line 720, in call
+    ret = func(*args, **kwargs)
+  File "/app/base_de_donnees/base_de_donnee.py", line 38, in selection
+    return [{"id": r[0], "donnee": r[1], "description":r[2]} for r in rows]
+                                                       ~^^^
+IndexError: tuple index out of range
+2026-10-20 15:51:45,866 - ERROR - erreur de db - Failures threshold reached, circuit breaker opened - trace_id=0e4f8bf5-8722-4979-8cfe-5b17d9982811 requette_id=b4c2e19e-3848-4a9f-ab13-764d36018320 users_id=3aea69ba-43e0-4ca5-b021-ebda1bb02ba0 service= create donnee
+2026-10-20 15:51:47,868 - ERROR - erreur de db - Timeout not elapsed yet, circuit breaker still open - trace_id=e074cef3-af1e-476a-b6d8-c1c0e19545a3 requette_id=2444f4d2-d656-4b85-8eec-3e35c1a30006 users_id=3aea69ba-43e0-4ca5-b021-ebda1bb02ba0 service= create donnee
+2026-10-20 15:52:09,978 - ERROR - erreur de db - Timeout not elapsed yet, circuit breaker still open - trace_id=749fb7f9-9fc8-44c8-beaf-71dca5c1b40d requette_id=78b86559-f060-4080-b52e-7461eff11dd0 users_id=3aea69ba-43e0-4ca5-b021-ebda1bb02ba0 service= create donnee
+2026-10-20 15:52:10,980 - ERROR - erreur de db - Timeout not elapsed yet, circuit breaker still open - trace_id=25a4f408-5d85-4f55-a506-5648c1017996 requette_id=baf68e01-0255-42dd-b35f-17d67352394b users_id=3aea69ba-43e0-4ca5-b021-ebda1bb02ba0 service= create donnee
+2026-10-20 15:52:12,982 - ERROR - erreur de db - Timeout not elapsed yet, circuit breaker still open - trace_id=bbe9c44e-703c-42f2-b914-a1dc62b1eeec requette_id=95b44235-b012-4cb1-b62c-fb95c85d3ada users_id=3aea69ba-43e0-4ca5-b021-ebda1bb02ba0 service= create donnee
+2026-10-20 15:53:14,289 - INFO - Arrêt en cours
+2026-10-20 15:53:14,289 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 15:53:14,305 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 15:53:14,305 - INFO - Consommateur arrêté correctement
+2026-10-20 15:53:14,305 - INFO - RabbitMQ fermé
+2026-10-20 15:53:14,306 - INFO - Redis fermé
+2026-10-20 15:53:14,306 - INFO - SQLite fermée
+2026-10-20 15:53:14,308 - INFO - OpenTelemetry fermé
+2026-10-20 15:53:14,308 - INFO - SHUTDOWN : terminé
+2026-10-20 15:53:23,784 - INFO - Message envoyé : 1523
+2026-10-20 15:53:23,786 - INFO - Connexion producteur fermée
+2026-10-20 15:53:23,787 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 15:53:23,787 - INFO - Thread RabbitMQ démarré
+2026-10-20 15:53:23,807 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 15:53:23,807 - INFO - Message reçu : 1523
+2026-10-20 15:53:29,003 - INFO - api alumer trace_id=71bddcd0-28ee-4afe-9681-952b888e0757 requette_id=713ab698-a2a0-402c-8fd1-327c064c8806 users_id=adf4f955-9c51-4be7-8186-d54f05126cdd service=gui
+2026-10-20 15:54:51,083 - INFO - un items a ete creer trace_id=0c8af614-1a19-47d3-8df3-d9fd2a1ec44f requette_id=b186103f-cbfb-4f1f-900c-6537d115a301 users_id=adf4f955-9c51-4be7-8186-d54f05126cdd service= create donnee
+2026-10-20 15:54:51,098 - INFO - Message reçu : probleme de cache
+2026-10-20 15:54:51,099 - INFO - Message envoyé : probleme de cache
+2026-10-20 15:54:51,102 - INFO - Connexion producteur fermée
+2026-10-20 16:05:59,945 - INFO - Arrêt en cours
+2026-10-20 16:05:59,945 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 16:06:00,791 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 16:06:00,791 - INFO - Consommateur arrêté correctement
+2026-10-20 16:06:00,791 - INFO - RabbitMQ fermé
+2026-10-20 16:06:00,791 - INFO - Redis fermé
+2026-10-20 16:06:00,791 - INFO - SQLite fermée
+2026-10-20 16:06:00,792 - INFO - OpenTelemetry fermé
+2026-10-20 16:06:00,792 - INFO - SHUTDOWN : terminé
+2026-10-20 16:06:11,350 - INFO - Message envoyé : 1523
+2026-10-20 16:06:11,351 - INFO - Connexion producteur fermée
+2026-10-20 16:06:11,351 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 16:06:11,352 - INFO - Thread RabbitMQ démarré
+2026-10-20 16:06:11,362 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 16:06:11,362 - INFO - Message reçu : 1523
+2026-10-20 16:06:16,096 - INFO - api alumer trace_id=d7dd88a0-6b0d-4507-b470-0868c792d8b2 requette_id=406d910b-8c49-42a6-a49d-5ed687e5f865 users_id=48b656cb-dce3-4b0d-9ab3-87a958ef4b96 service=gui
+2026-10-20 16:07:12,249 - INFO - Arrêt en cours
+2026-10-20 16:07:12,249 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 16:07:12,430 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 16:07:12,430 - INFO - Consommateur arrêté correctement
+2026-10-20 16:07:12,430 - INFO - RabbitMQ fermé
+2026-10-20 16:07:12,430 - INFO - Redis fermé
+2026-10-20 16:07:12,431 - INFO - SQLite fermée
+2026-10-20 16:07:12,432 - INFO - OpenTelemetry fermé
+2026-10-20 16:07:12,432 - INFO - SHUTDOWN : terminé
+2026-10-20 16:07:25,559 - INFO - Message envoyé : 1523
+2026-10-20 16:07:25,562 - INFO - Connexion producteur fermée
+2026-10-20 16:07:25,563 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 16:07:25,563 - INFO - Thread RabbitMQ démarré
+2026-10-20 16:07:25,596 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 16:07:25,596 - INFO - Message reçu : 1523
+2026-10-20 16:08:35,075 - INFO - Arrêt en cours
+2026-10-20 16:08:35,075 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 16:08:35,672 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 16:08:35,672 - INFO - Consommateur arrêté correctement
+2026-10-20 16:08:35,673 - INFO - RabbitMQ fermé
+2026-10-20 16:08:35,673 - INFO - Redis fermé
+2026-10-20 16:08:35,673 - INFO - SQLite fermée
+2026-10-20 16:08:35,675 - INFO - OpenTelemetry fermé
+2026-10-20 16:08:35,675 - INFO - SHUTDOWN : terminé
+2026-10-20 16:08:47,939 - INFO - Message envoyé : 1523
+2026-10-20 16:08:47,940 - INFO - Connexion producteur fermée
+2026-10-20 16:08:47,940 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 16:08:47,940 - INFO - Thread RabbitMQ démarré
+2026-10-20 16:08:47,953 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 16:08:47,953 - INFO - Message reçu : 1523
+2026-10-20 16:22:54,353 - INFO - Arrêt en cours
+2026-10-20 16:22:54,354 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 16:22:54,834 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 16:22:54,835 - INFO - Consommateur arrêté correctement
+2026-10-20 16:22:54,835 - INFO - RabbitMQ fermé
+2026-10-20 16:22:54,836 - INFO - Redis fermé
+2026-10-20 16:22:54,837 - INFO - SQLite fermée
+2026-10-20 16:22:54,837 - INFO - OpenTelemetry fermé
+2026-10-20 16:22:54,838 - INFO - SHUTDOWN : terminé
+2026-10-20 16:23:09,434 - INFO - Message envoyé : 1523
+2026-10-20 16:23:09,436 - INFO - Connexion producteur fermée
+2026-10-20 16:23:09,436 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 16:23:09,436 - INFO - Thread RabbitMQ démarré
+2026-10-20 16:23:09,447 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 16:23:09,447 - INFO - Message reçu : 1523
+2026-10-20 16:24:54,929 - INFO - Arrêt en cours
+2026-10-20 16:24:54,930 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 16:24:55,563 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 16:24:55,564 - INFO - Consommateur arrêté correctement
+2026-10-20 16:24:55,564 - INFO - RabbitMQ fermé
+2026-10-20 16:24:55,565 - INFO - Redis fermé
+2026-10-20 16:24:55,565 - INFO - SQLite fermée
+2026-10-20 16:24:55,566 - INFO - OpenTelemetry fermé
+2026-10-20 16:24:55,567 - INFO - SHUTDOWN : terminé
+2026-10-20 16:25:05,694 - INFO - Message envoyé : 1523
+2026-10-20 16:25:05,696 - INFO - Connexion producteur fermée
+2026-10-20 16:25:05,696 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 16:25:05,696 - INFO - Thread RabbitMQ démarré
+2026-10-20 16:25:05,710 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 16:25:05,710 - INFO - Message reçu : 1523
+2026-10-20 16:29:24,062 - INFO - Arrêt en cours
+2026-10-20 16:29:24,063 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 16:29:24,987 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 16:29:24,988 - INFO - Consommateur arrêté correctement
+2026-10-20 16:29:24,988 - INFO - RabbitMQ fermé
+2026-10-20 16:29:24,989 - INFO - Redis fermé
+2026-10-20 16:29:24,989 - INFO - SQLite fermée
+2026-10-20 16:29:24,991 - INFO - OpenTelemetry fermé
+2026-10-20 16:29:24,991 - INFO - SHUTDOWN : terminé
+2026-10-20 16:29:38,369 - INFO - Message envoyé : 1523
+2026-10-20 16:29:38,371 - INFO - Connexion producteur fermée
+2026-10-20 16:29:38,371 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 16:29:38,372 - INFO - Thread RabbitMQ démarré
+2026-10-20 16:29:38,383 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 16:29:38,383 - INFO - Message reçu : 1523
+2026-10-20 16:34:09,644 - INFO - Arrêt en cours
+2026-10-20 16:34:09,645 - INFO - Demande de shutdown RabbitMQ
+2026-10-20 16:34:09,663 - INFO - Boucle du consommateur terminée proprement.
+2026-10-20 16:34:09,663 - INFO - Consommateur arrêté correctement
+2026-10-20 16:34:09,663 - INFO - RabbitMQ fermé
+2026-10-20 16:34:09,663 - INFO - Redis fermé
+2026-10-20 16:34:09,663 - INFO - SQLite fermée
+2026-10-20 16:34:09,664 - INFO - OpenTelemetry fermé
+2026-10-20 16:34:09,664 - INFO - SHUTDOWN : terminé
+2026-10-20 16:34:18,798 - INFO - Message envoyé : 1523
+2026-10-20 16:34:18,799 - INFO - Connexion producteur fermée
+2026-10-20 16:34:18,799 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-20 16:34:18,799 - INFO - Thread RabbitMQ démarré
+2026-10-20 16:34:18,811 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-20 16:34:18,811 - INFO - Message reçu : 1523
+2026-10-21 10:16:31,085 - INFO - Arrêt en cours
+2026-10-21 10:16:31,086 - INFO - Demande de shutdown RabbitMQ
+2026-10-21 10:16:31,431 - INFO - Boucle du consommateur terminée proprement.
+2026-10-21 10:16:31,432 - INFO - Consommateur arrêté correctement
+2026-10-21 10:16:31,432 - INFO - RabbitMQ fermé
+2026-10-21 10:16:31,433 - INFO - Redis fermé
+2026-10-21 10:16:31,434 - INFO - SQLite fermée
+2026-10-21 10:16:31,438 - INFO - OpenTelemetry fermé
+2026-10-21 10:16:31,438 - INFO - SHUTDOWN : terminé
+2026-10-21 10:16:51,831 - INFO - Message envoyé : 1523
+2026-10-21 10:16:51,832 - INFO - Connexion producteur fermée
+2026-10-21 10:16:51,833 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-21 10:16:51,833 - INFO - Thread RabbitMQ démarré
+2026-10-21 10:16:51,847 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-21 10:16:51,848 - INFO - Message reçu : 1523
+2026-10-21 10:18:33,323 - INFO - Arrêt en cours
+2026-10-21 10:18:33,323 - INFO - Demande de shutdown RabbitMQ
+2026-10-21 10:18:33,958 - INFO - Boucle du consommateur terminée proprement.
+2026-10-21 10:18:33,958 - INFO - Consommateur arrêté correctement
+2026-10-21 10:18:33,958 - INFO - RabbitMQ fermé
+2026-10-21 10:18:33,958 - INFO - Redis fermé
+2026-10-21 10:18:33,959 - INFO - SQLite fermée
+2026-10-21 10:18:33,959 - INFO - OpenTelemetry fermé
+2026-10-21 10:18:33,959 - INFO - SHUTDOWN : terminé
+2026-10-21 10:19:10,130 - INFO - Message envoyé : 1523
+2026-10-21 10:19:10,131 - INFO - Connexion producteur fermée
+2026-10-21 10:19:10,131 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-21 10:19:10,132 - INFO - Thread RabbitMQ démarré
+2026-10-21 10:19:10,143 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-21 10:19:10,143 - INFO - Message reçu : 1523
+2026-10-21 10:36:28,857 - INFO - Arrêt en cours
+2026-10-21 10:36:28,857 - INFO - Demande de shutdown RabbitMQ
+2026-10-21 10:36:29,241 - INFO - Boucle du consommateur terminée proprement.
+2026-10-21 10:36:29,241 - INFO - Consommateur arrêté correctement
+2026-10-21 10:36:29,241 - INFO - RabbitMQ fermé
+2026-10-21 10:36:29,241 - INFO - Redis fermé
+2026-10-21 10:36:29,242 - INFO - SQLite fermée
+2026-10-21 10:36:29,243 - INFO - OpenTelemetry fermé
+2026-10-21 10:36:29,244 - INFO - SHUTDOWN : terminé
+2026-10-21 10:36:47,358 - INFO - Message envoyé : 1523
+2026-10-21 10:36:47,360 - INFO - Connexion producteur fermée
+2026-10-21 10:36:47,362 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-21 10:36:47,363 - INFO - Thread RabbitMQ démarré
+2026-10-21 10:36:47,642 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-21 10:36:47,642 - INFO - Message reçu : 1523
+2026-10-21 10:39:02,251 - INFO - Arrêt en cours
+2026-10-21 10:39:02,252 - INFO - Demande de shutdown RabbitMQ
+2026-10-21 10:39:02,784 - INFO - Boucle du consommateur terminée proprement.
+2026-10-21 10:39:02,784 - INFO - Consommateur arrêté correctement
+2026-10-21 10:39:02,784 - INFO - RabbitMQ fermé
+2026-10-21 10:39:02,784 - INFO - Redis fermé
+2026-10-21 10:39:02,785 - INFO - SQLite fermée
+2026-10-21 10:39:02,786 - INFO - OpenTelemetry fermé
+2026-10-21 10:39:02,786 - INFO - SHUTDOWN : terminé
+2026-10-21 10:39:16,876 - INFO - Message envoyé : 1523
+2026-10-21 10:39:16,877 - INFO - Connexion producteur fermée
+2026-10-21 10:39:16,878 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-21 10:39:16,878 - INFO - Thread RabbitMQ démarré
+2026-10-21 10:39:16,896 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-21 10:39:16,896 - INFO - Message reçu : 1523
+2026-10-21 10:40:42,665 - INFO - Arrêt en cours
+2026-10-21 10:40:42,665 - INFO - Demande de shutdown RabbitMQ
+2026-10-21 10:40:42,989 - INFO - Boucle du consommateur terminée proprement.
+2026-10-21 10:40:42,989 - INFO - Consommateur arrêté correctement
+2026-10-21 10:40:42,990 - INFO - RabbitMQ fermé
+2026-10-21 10:40:42,990 - INFO - Redis fermé
+2026-10-21 10:40:42,990 - INFO - SQLite fermée
+2026-10-21 10:40:42,991 - INFO - OpenTelemetry fermé
+2026-10-21 10:40:42,991 - INFO - SHUTDOWN : terminé
+2026-10-21 10:40:56,859 - INFO - Message envoyé : 1523
+2026-10-21 10:40:56,861 - INFO - Connexion producteur fermée
+2026-10-21 10:40:56,861 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-21 10:40:56,861 - INFO - Thread RabbitMQ démarré
+2026-10-21 10:40:56,873 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-21 10:40:56,874 - INFO - Message reçu : 1523
+2026-10-21 10:44:52,449 - INFO - Arrêt en cours
+2026-10-21 10:44:52,449 - INFO - Demande de shutdown RabbitMQ
+2026-10-21 10:44:53,122 - INFO - Boucle du consommateur terminée proprement.
+2026-10-21 10:44:53,122 - INFO - Consommateur arrêté correctement
+2026-10-21 10:44:53,122 - INFO - RabbitMQ fermé
+2026-10-21 10:44:53,122 - INFO - Redis fermé
+2026-10-21 10:44:53,123 - INFO - SQLite fermée
+2026-10-21 10:44:53,123 - INFO - OpenTelemetry fermé
+2026-10-21 10:44:53,123 - INFO - SHUTDOWN : terminé
+2026-10-21 10:45:19,636 - INFO - Message envoyé : 1523
+2026-10-21 10:45:19,638 - INFO - Connexion producteur fermée
+2026-10-21 10:45:19,638 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-21 10:45:19,638 - INFO - Thread RabbitMQ démarré
+2026-10-21 10:45:19,658 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-21 10:45:19,658 - INFO - Message reçu : 1523
+2026-10-22 17:30:55,801 - INFO - api alumer trace_id=9c71f900-7e3f-435b-813b-bc694b117151 requette_id=27f6dcb8-db6d-4d7a-ae21-15646bf81d6d users_id=1c38a53c-5464-4d16-9433-ad05e0630ea5 service=gui
+2026-10-22 23:22:43,751 - ERROR - Connexion perdue ou erreur réseau ((320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")). Nouvelle tentative dans 5 secondes...
+Traceback (most recent call last):
+  File "/app/service/broker.py", line 158, in recois
+    connection.process_data_events(time_limit=1)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pika/adapters/blocking_connection.py", line 900, in process_data_events
+    self._flush_output(timer.is_ready, common_terminator)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/pika/adapters/blocking_connection.py", line 551, in _flush_output
+    raise self._closed_result.value.error
+pika.exceptions.ConnectionClosedByBroker: (320, "CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'")
+2026-10-22 23:22:43,833 - INFO - Arrêt en cours
+2026-10-22 23:22:43,833 - INFO - Demande de shutdown RabbitMQ
+2026-10-22 23:22:43,839 - INFO - Boucle du consommateur terminée proprement.
+2026-10-22 23:22:43,843 - INFO - Consommateur arrêté correctement
+2026-10-22 23:22:43,843 - INFO - RabbitMQ fermé
+2026-10-22 23:22:43,844 - INFO - Redis fermé
+2026-10-22 23:22:43,854 - INFO - SQLite fermée
+2026-10-22 23:22:43,920 - INFO - OpenTelemetry fermé
+2026-10-22 23:22:43,920 - INFO - SHUTDOWN : terminé
+2026-10-28 12:46:17,733 - INFO - Message envoyé : 1523
+2026-10-28 12:46:17,734 - INFO - Connexion producteur fermée
+2026-10-28 12:46:17,734 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-28 12:46:17,734 - INFO - Thread RabbitMQ démarré
+2026-10-28 12:46:17,744 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-28 12:46:17,745 - INFO - Message reçu : 1523
+2026-10-28 14:46:09,961 - INFO - api alumer trace_id=d968755a-5d88-425a-9c57-dcca334e8f14 requette_id=1b17bfda-d603-4339-b032-6e979be35d24 users_id=19b5b483-2c84-4aed-b78e-19ff6b1ca67b service=gui
+2026-10-28 14:46:48,404 - INFO - un items a ete creer trace_id=09235c67-8728-4269-a258-015d77a6caa6 requette_id=19f76c7a-dec3-4a13-88f6-374ad58a4716 users_id=19b5b483-2c84-4aed-b78e-19ff6b1ca67b service= create donnee
+2026-10-28 14:46:48,416 - INFO - Message reçu : probleme de cache
+2026-10-28 14:46:48,417 - INFO - Message envoyé : probleme de cache
+2026-10-28 14:46:48,418 - INFO - Connexion producteur fermée
+2026-10-28 15:53:46,168 - INFO - Arrêt en cours
+2026-10-28 15:53:46,168 - INFO - Demande de shutdown RabbitMQ
+2026-10-28 15:53:46,732 - INFO - Boucle du consommateur terminée proprement.
+2026-10-28 15:53:46,732 - INFO - Consommateur arrêté correctement
+2026-10-28 15:53:46,732 - INFO - RabbitMQ fermé
+2026-10-28 15:53:46,733 - INFO - Redis fermé
+2026-10-28 15:53:46,738 - INFO - SQLite fermée
+2026-10-28 15:53:46,739 - INFO - OpenTelemetry fermé
+2026-10-28 15:53:46,739 - INFO - SHUTDOWN : terminé
+2026-10-28 16:11:42,628 - INFO - Message envoyé : 1523
+2026-10-28 16:11:42,630 - INFO - Connexion producteur fermée
+2026-10-28 16:11:42,630 - INFO - Tentative de connexion du consumer RabbitMQ...
+2026-10-28 16:11:42,630 - INFO - Thread RabbitMQ démarré
+2026-10-28 16:11:42,641 - INFO - Consumer RabbitMQ démarré et à l'écoute
+2026-10-28 16:11:42,641 - INFO - Message reçu : 1523

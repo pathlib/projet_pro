@@ -7361,3 +7361,10 @@
 2026-08-27 16:31:25,746 - INFO - aa6caf63-e09a-4cfa-9af5-f5b218cff863
 2026-08-27 16:31:40,748 - INFO - b9a7b57e-67e3-418b-aa7d-2d317cfbc80f
 2026-09-05 14:18:25,883 - INFO - Donnée enregistrée trace_id=d396e967-a263-4e58-9152-bc8a0bdcfcb8 requette_id=02365769-6492-46c5-8b2c-97227bad4899 users_id=7c4acc2a-0a62-492f-b299-a1a804925f36 service= create donnee
+2026-10-20 15:28:11,847 - INFO - Donnée enregistrée trace_id=80d4bb33-d902-4b0d-9131-e39a9524b454 requette_id=7b7e8a70-4b99-4485-947b-2a7e86504e2a users_id=0029e41a-49c7-4408-aa3a-b631502cf7ab service= create donnee
+2026-10-20 15:44:25,120 - INFO - Donnée enregistrée trace_id=4d72ddfa-a0f7-4fd5-accf-fcc5b1ab29e3 requette_id=a36cb53f-b6a7-4183-ab5c-80bf216b47bb users_id=94f7bfde-0301-4e1c-ba49-e2f3cfc844cf service= create donnee
+2026-10-20 15:46:25,616 - INFO - Donnée enregistrée trace_id=960b66dd-468a-4cb3-b14b-d034760e25ee requette_id=f9a048ca-ee37-421b-be5b-16e2947b3534 users_id=3c19fa23-6b68-46a1-9ce1-b9584f130038 service= create donnee
+2026-10-20 15:51:24,190 - INFO - Donnée enregistrée trace_id=8fa5c4ec-e227-4db6-97ce-ce9f83657161 requette_id=86c568df-ea05-4f24-9dc4-c142de4f3688 users_id=3aea69ba-43e0-4ca5-b021-ebda1bb02ba0 service= create donnee
+2026-10-20 15:54:51,102 - INFO - Donnée enregistrée trace_id=0c8af614-1a19-47d3-8df3-d9fd2a1ec44f requette_id=b186103f-cbfb-4f1f-900c-6537d115a301 users_id=adf4f955-9c51-4be7-8186-d54f05126cdd service= create donnee
+2026-10-28 14:46:48,418 - INFO - Donnée enregistrée trace_id=09235c67-8728-4269-a258-015d77a6caa6 requette_id=19f76c7a-dec3-4a13-88f6-374ad58a4716 users_id=19b5b483-2c84-4aed-b78e-19ff6b1ca67b service= create donnee
+2026-10-28 14:47:34,497 - INFO - un items a ete mise a jour trace_id=abc156c2-8bc5-4f2c-89aa-ccf2f7e273d7 requette_id=b44b2fe6-33e2-4755-82b6-5b7364dfb92c users_id=19b5b483-2c84-4aed-b78e-19ff6b1ca67b service= update

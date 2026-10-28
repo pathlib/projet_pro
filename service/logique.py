@@ -1,22 +1,18 @@
 from sys import audit
 from securite import securites
 from pydantic import BaseModel
-from fastapi import Query, HTTPException, Request
+from fastapi import Query, HTTPException
 from typing import Any
 from utils.loggers import logger, audit
 from utils.gui import guis, gui2
-from typing import Any, Dict
-from dotenv import load_dotenv
-from service.cache import get_cache, set_cache, stopredis
+from typing import Dict
+from service.cache import get_cache, set_cache
 from tenacity import retry, stop_after_attempt, wait_exponential
-from service.broker import message, arretrabbitmq, start_consumer
-from pika.exceptions import AMQPConnectionError
+from service.broker import message, start_consumer
 import threading
 import pybreaker
 from opentelemetry import trace
 import uuid
-import signal
-import subprocess
 
 try:
     from base_de_donnees.base_de_donnee import (
@@ -24,7 +20,6 @@ try:
         deletion,
         creation,
         modification,
-        stopdb,
     )
 except Exception as e:
     print(e)
@@ -67,6 +62,7 @@ def compte():
             return users_id
 
 
+trace_id = str(uuid.uuid4())
 compte()
 # __________________________________
 
@@ -127,7 +123,7 @@ def home2():
 # Recherche sécurisée
 def recherche_donnee(item: Any) -> Dict[str, Any]:
     if shutting_down.is_set():
-        return "shutdown"
+        return {"shutdown"}
     try:
         with tracer.start_as_current_span("db.recherche") as db_span:
             data = breaker.call(selection)
@@ -252,6 +248,7 @@ def create_donnee(item: str):
             logger.info(f"un items a ete creer {logs}")
         with tracer.start_as_current_span("message rabitmq") as db_span:
             try:
+                # corectif a apportee
                 c = "probleme de cache"
                 set_cache(item, c)
             except Exception as e:

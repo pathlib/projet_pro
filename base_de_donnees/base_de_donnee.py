@@ -64,6 +64,30 @@ def deletion(id_donnee):
         conn.commit()
 
 
+def test():
+    try:
+        curs.execute("PRAGMA database_list")
+        db = curs.fetchall()
+        print("BASE SQLITE :", db)
+
+        curs.execute("""
+                     SELECT name
+                     FROM sqlite_master
+                     WHERE type = 'table'
+                     """)
+        tables = curs.fetchall()
+        print("TABLES :", tables)
+
+        curs.execute("SELECT description FROM donnees")
+        data = curs.fetchall()
+
+        return {"data": data}
+
+    except Exception as e:
+        print("ERREUR :", e)
+        return {"error": str(e)}
+
+
 def stopdb():
     db_shutdown.set()
     with db_lock:

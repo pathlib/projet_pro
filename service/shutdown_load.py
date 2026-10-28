@@ -4,7 +4,6 @@ from service.cache import stopredis
 from utils.loggers import logger
 from service.telemetry import stopopentelemetry
 from service.logique import stop_application
-import asyncio
 
 
 def shutdowns(app):
